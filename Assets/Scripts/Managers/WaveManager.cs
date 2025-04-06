@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TowerDeffence.AI.Data;
 using TowerDeffence.UI.Model;
 using TowerDeffence.UI.Presenter;
 using TowerDeffence.UI.View;
@@ -41,12 +43,13 @@ namespace TowerDeffence.AI
     [System.Serializable]
     public class WaveEnemy
     {
-        public EnemyMovement EnemyPrefab;
+        public EnemySO EnemyData;
         public uint Amount;
     }
 
     public class WaveManager : Presenter<View<WaveInfo>,Wave,WaveInfo>
     {
+        public static Action<string, float> OnNewWaveStarted;
         [SerializeField] private Transform target, spawnPoint;
         [SerializeField] private bool randomizeDelay;
         [SerializeField, Range(0, 100)] private float spawnDelay;
@@ -78,6 +81,7 @@ namespace TowerDeffence.AI
             {
                 int totalEnemyCount = (int)waves[i].Enemies.Sum((w) => w.Amount);
                 float waveDuration = waves[i].Duration / totalEnemyCount;
+                OnNewWaveStarted?.Invoke(waves[i].Name, waves[i].Duration);
                 if (i+1 < waves.Count)
                 {
                     ChangeModel(waves[i + 1]);
@@ -96,7 +100,7 @@ namespace TowerDeffence.AI
                     if (waveEnemy == null) break;
                     waveEnemy.Amount--;
                     //TODO: [DD] refacctor to pool
-                    EnemyMovement instance = Instantiate(waveEnemy.EnemyPrefab,spawnPoint.position, Quaternion.identity);
+                    EnemyMovement instance = Instantiate(waveEnemy.EnemyData.Prefab,spawnPoint.position, Quaternion.identity);
                     instance.MoveTo(target.position);
                     yield return new WaitForSeconds(waveDuration + GetDealy());
                 }
@@ -106,7 +110,7 @@ namespace TowerDeffence.AI
         //TODO: [DD] account for delay in the duration calculation
         private float GetDealy()
         {
-            return randomizeDelay ? Random.Range(0, spawnDelay) : spawnDelay;
+            return randomizeDelay ? UnityEngine.Random.Range(0, spawnDelay) : spawnDelay;
         }
 
         private WaveEnemy GetRandomEnemy()
@@ -115,7 +119,7 @@ namespace TowerDeffence.AI
             .SelectMany(w => w.Enemies)
             .Where(e => e.Amount > 0).ToList();
             if (availableEnemies.Count == 0) return null;
-            return availableEnemies[Random.Range(0, availableEnemies.Count)];
+            return availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count)];
         }
     }
 }
