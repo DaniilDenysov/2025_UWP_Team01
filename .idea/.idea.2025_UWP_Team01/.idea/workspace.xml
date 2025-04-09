@@ -5,16 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69f215c3-aa59-4b51-b5b6-219fb9220a38" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Input.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/View/BuildingButtonView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/View/BuildingButtonView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DefaultActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultActions.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
@@ -110,7 +100,7 @@
       <workItem from="1742999154207" duration="572000" />
       <workItem from="1743596502799" duration="4156000" />
       <workItem from="1744200375993" duration="685000" />
-      <workItem from="1744201080925" duration="14826000" />
+      <workItem from="1744201080925" duration="15445000" />
     </task>
     <servers />
   </component>
