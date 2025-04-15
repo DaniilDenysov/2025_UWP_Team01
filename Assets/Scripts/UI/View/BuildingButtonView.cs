@@ -10,7 +10,7 @@ namespace TowerDeffence.UI.View
     public class BuildingButtonView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private Building _buildPrefab;
-        private BuildingPlacer buildingPlacer;
+        private BuildingPlacer _buildingPlacer;
         
         [Header("Colors")]
         public Color normalColor = Color.white;
@@ -26,7 +26,7 @@ namespace TowerDeffence.UI.View
 
         private void Start()
         {
-            buildingPlacer = FindObjectOfType<BuildingPlacer>();
+            _buildingPlacer = FindObjectOfType<BuildingPlacer>();
         }
 
         public void SetSelected(bool isSelected)
@@ -36,24 +36,24 @@ namespace TowerDeffence.UI.View
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (_buildPrefab != null && buildingPlacer != null)
+            if (_buildPrefab != null && _buildingPlacer != null)
             {
-                buildingPlacer.StartPlacing(_buildPrefab);
+                _buildingPlacer.StartPlacing(_buildPrefab);
                 SetSelected(true);
             }
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (buildingPlacer != null)
-                buildingPlacer.UpdatePlacingPosition();
+            if (_buildingPlacer != null)
+                _buildingPlacer.UpdatePlacingPosition();
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (buildingPlacer != null)
+            if (_buildingPlacer != null)
             {
-                buildingPlacer.FinalizePlacement();
+                _buildingPlacer.FinalizePlacement();
                 SetSelected(false);
             }
         }

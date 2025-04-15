@@ -15,3 +15,4 @@ MonoBehaviour:
   enemyIcon: {fileID: -1696029555, guid: c5f5116afc8b4934aacb81a0e106ed1d, type: 3}
   enemyName: Barbarian
   prefab: {fileID: 8951960418556839814, guid: 6d20753568a85aa4bbfdf2e31475449c, type: 3}
+  income: 150

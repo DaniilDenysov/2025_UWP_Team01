@@ -7,6 +7,5 @@ namespace TowerDeffence.UI.Model.Varialbes
     [CreateAssetMenu(fileName = "IntegerVariable", menuName = "TowerDeffence/Variables/IntegerVariable")]
     public class IntegerVariable : VariableSO<int>
     {
-
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using TowerDeffence.UI.Model.Varialbes;
 using TowerDeffence.UI.View.Variables;
 using TowerDeffence.Utilities;
@@ -9,8 +10,8 @@ namespace TowerDeffence.UI.Presenter.Variables
     {
         [SerializeField] protected VariableSO<T> model;
         [SerializeField] protected VariableView<T> view;
-
-        protected void Start()
+        
+        private void Start()
         {
             view.UpdateView(model.Value);
         }

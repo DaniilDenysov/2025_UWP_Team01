@@ -1,14 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using TowerDeffence.AI;
 using UnityEngine;
 
 public class Building : MonoBehaviour, IPrototype
 {
+    [SerializeField] private int price;
+    private static List<Building> AvailableBuidings = new List<Building>();
+    
     public static List<Building> Available = new List<Building>();
     private Renderer[] renderers;
     
     private Collider previewCollider;
     private Vector3 boundsExtents;
+    protected EconomyManager _economyManager;
+
+    protected bool isPreviewMode;
     
     private void Awake()
     {
@@ -16,10 +25,34 @@ public class Building : MonoBehaviour, IPrototype
         boundsExtents = previewCollider.bounds.extents;
         renderers = GetComponentsInChildren<Renderer>();
     }
-    
-    public void Place(Vector3 position)
+
+    private void Start()
     {
-        
+        _economyManager = EconomyManager.Instance;
+    }
+
+    public bool Place()
+    {
+        if (_economyManager.CanAfford(price))
+        {
+            _economyManager.Reduce(price);
+            AvailableBuidings.Add(this);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void Remove()
+    {
+        AvailableBuidings.Remove(this);
+        Destroy(this);
+    }
+
+    public void Sell()
+    {
+        _economyManager.Add(price);
+        Remove();
     }
 
     public GameObject Copy()
@@ -29,6 +62,8 @@ public class Building : MonoBehaviour, IPrototype
     
     public void SetPreviewMode(bool isPreview)
     {
+        isPreviewMode = isPreview;
+        
         foreach (var col in GetComponentsInChildren<Collider>())
         {
             col.enabled = true;
@@ -55,8 +90,8 @@ public class Building : MonoBehaviour, IPrototype
     
     public void SetPreviewValid(bool isValid)
     {
-        Color validColor = new Color(0f, 1f, 0f, 0.5f); // green
-        Color invalidColor = new Color(1f, 0f, 0f, 0.5f); // red
+        Color validColor = new Color(0f, 1f, 0f, 0.5f);
+        Color invalidColor = new Color(1f, 0f, 0f, 0.5f);
 
         foreach (var renderer in renderers)
         {
@@ -89,5 +124,10 @@ public class Building : MonoBehaviour, IPrototype
         mat.DisableKeyword("_ALPHABLEND_ON");
         mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
         mat.renderQueue = -1;
+    }
+
+    public static IReadOnlyList<Building> getAllBuildings()
+    {
+        return AvailableBuidings.AsReadOnly();
     }
 }

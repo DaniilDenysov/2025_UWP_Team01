@@ -1,0 +1,73 @@
+using TowerDeffence.AI;
+using UnityEngine;
+
+namespace Buildings
+{
+    public class Tower : Building
+    {
+        [SerializeField] private TowerSO _towerSO;
+        [SerializeField] private Transform firePoint;
+
+        private float fireCountdown = 0f;
+        private Transform target;
+
+        private void Update()
+        {
+            if (CanShoot())
+            {
+                FindTarget();
+
+                if (target != null && fireCountdown <= 0f)
+                {
+                    Shoot();
+                    fireCountdown = 1f / _towerSO.FireRate;
+                }
+
+                fireCountdown -= Time.deltaTime;
+            }
+        }
+
+        private void FindTarget()
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            float shortestDistance = Mathf.Infinity;
+            GameObject nearestEnemy = null;
+
+            foreach (GameObject enemy in enemies)
+            {
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToEnemy < shortestDistance && distanceToEnemy <= _towerSO.Range)
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
+            }
+
+            if (nearestEnemy != null)
+            {
+                target = nearestEnemy.transform;
+            }
+            else
+            {
+                target = null;
+            }
+        }
+
+        private void Shoot()
+        {
+            GameObject projGO = Instantiate(_towerSO.ProjectilePrefab.gameObject, firePoint.position, firePoint.rotation);
+            Projectile projectile = projGO.GetComponent<Projectile>();
+            projectile.onKilled += EconomyManager.Instance.OnKill;
+
+            if (projectile != null)
+            {
+                projectile.Seek(target);
+            }
+        }
+
+        private bool CanShoot()
+        {
+            return !isPreviewMode;
+        }
+    }
+}

@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TowerDeffence.UI.Model;
-using TowerDeffence.UI.Presenter;
+using TowerDeffence.AI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class BuildingPlacer : MonoBehaviour
 {
-    public Camera mainCamera;
-    public LayerMask placementLayer;
-    public LayerMask buildingLayer;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private LayerMask placementLayer;
+    [SerializeField] private LayerMask buildingLayer;
 
     private Building currentPreview;
     private Building prefabToPlace;
@@ -86,6 +84,8 @@ public class BuildingPlacer : MonoBehaviour
         }
 
         currentPreview.SetPreviewMode(false);
+        currentPreview.Place();
+        
         currentPreview = null;
         prefabToPlace = null;
     }
