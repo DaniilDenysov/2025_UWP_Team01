@@ -5,32 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69f215c3-aa59-4b51-b5b6-219fb9220a38" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Projectile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Projectile.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Tower.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Tower.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/TowerSO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/TowerSO.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Singleton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Singleton.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/EconomyManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/EconomyManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Tower_A.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Tower_A.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Buildings/Tower.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Buildings/Tower.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Enemies/Archer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/Enemies/Archer.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Enemies/Barbarian.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/Enemies/Barbarian.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/Variables/Integer/Coins.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/Variables/Integer/Coins.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/BuildingPlacer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/BuildingPlacer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/BuildingPlacer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/BuildingPlacer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Model/Variables/IntegerVariable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Model/Variables/IntegerVariable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Presenter/Variables/VariablePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Presenter/Variables/VariablePresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/View/BuildingButtonView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/View/BuildingButtonView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/EconomyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/EconomyManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +98,8 @@
       <workItem from="1743596502799" duration="4156000" />
       <workItem from="1744200375993" duration="685000" />
       <workItem from="1744201080925" duration="15445000" />
-      <workItem from="1744672352140" duration="11191000" />
+      <workItem from="1744672352140" duration="11677000" />
+      <workItem from="1744734794319" duration="1281000" />
     </task>
     <servers />
   </component>

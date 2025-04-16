@@ -32,7 +32,6 @@ namespace TowerDeffence.AI
 
         public void Add(int amount)
         {
-            Debug.Log("Added");
             OnViewVariableAdded(amount);
         }
         
