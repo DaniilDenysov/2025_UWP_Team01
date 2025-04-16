@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fa4da7ce4f4dfd98351288bb065340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 10
   _towerSO: {fileID: 11400000, guid: 6f1ba347f0e624246b08b798aaf35c98, type: 2}
   firePoint: {fileID: 540072241449173349}
 --- !u!65 &2179264493810015923

@@ -43,19 +43,12 @@ namespace TowerDeffence.UI.Presenter.Variables
             {
                 model.OnValueChanged -= OnVariableUpdated;
             }
-            else
-            {
-                DebugUtility.PrintError("Model is null!");
-            }
             if (view != null)
             {
                 view.OnVariableAssigned -= OnViewVariableAssigned;
                 view.OnVariableAdded -= OnViewVariableAdded;
             }
-            else
-            {
-                DebugUtility.PrintError("View is null!");
-            }
+ 
         }
 
         protected  abstract void OnViewVariableAssigned(T newValue);
@@ -64,7 +57,9 @@ namespace TowerDeffence.UI.Presenter.Variables
 
         protected virtual void OnVariableUpdated(T oldValue, T newValue)
         {
+            DebugUtility.PrintLine("Event r");
             if (view == null) return;
+            DebugUtility.PrintLine("Variable updated");
             view.UpdateView(newValue);
         }
     }

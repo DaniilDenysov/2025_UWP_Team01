@@ -9,13 +9,15 @@ namespace TowerDeffence.UI.Presenter.Variables
         protected override void OnViewVariableAdded(int addedValue)
         {
             if (model == null) return;
-            model.Value += addedValue;
+            model.Value = model.Value + addedValue;
+            view.UpdateView(model.Value);
         }
 
         protected override void OnViewVariableAssigned(int newValue)
         {
             if (model == null) return;
             model.Value = newValue;
+            view.UpdateView(model.Value);
         }
     }
 }

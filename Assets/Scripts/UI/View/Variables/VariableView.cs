@@ -13,6 +13,7 @@ namespace TowerDeffence.UI.View.Variables
 
         public virtual void UpdateView(T value)
         {
+            Debug.Log(value);
             display.text = $"{prefix}{value}";
         }
 

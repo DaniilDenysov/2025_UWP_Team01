@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using TowerDeffence.AI;
+using TowerDeffence.Interfaces;
 using UnityEngine;
 
 public class Building : MonoBehaviour, IPrototype
 {
     [SerializeField] private int price;
-    private static List<Building> AvailableBuidings = new List<Building>();
-    
-    public static List<Building> Available = new List<Building>();
+    public static List<Building> AvailableBuidings = new List<Building>();
+
     private Renderer[] renderers;
     
     private Collider previewCollider;
@@ -31,25 +31,38 @@ public class Building : MonoBehaviour, IPrototype
         _economyManager = EconomyManager.Instance;
     }
 
-    public bool Place()
+    private void OnEnable()
+    {
+        AvailableBuidings.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        AvailableBuidings.Remove(this);
+    }
+
+    private void OnDestroy()
+    {
+        AvailableBuidings.Remove(this);
+    }
+
+    public virtual bool Place()
     {
         if (_economyManager.CanAfford(price))
         {
             _economyManager.Reduce(price);
-            AvailableBuidings.Add(this);
             return true;
         }
 
         return false;
     }
 
-    public void Remove()
+    public virtual void Remove()
     {
-        AvailableBuidings.Remove(this);
         Destroy(this);
     }
 
-    public void Sell()
+    public virtual void Sell()
     {
         _economyManager.Add(price);
         Remove();

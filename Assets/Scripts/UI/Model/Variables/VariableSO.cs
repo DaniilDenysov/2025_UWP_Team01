@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TowerDeffence.Utilities;
 using UnityEngine;
 
 namespace TowerDeffence.UI.Model.Varialbes
@@ -13,13 +14,15 @@ namespace TowerDeffence.UI.Model.Varialbes
         {
             set
             {
-                if (currentValue.Equals(value)) return;
+               // if (currentValue.Equals(value)) return;
+                DebugUtility.PrintLine("Value changed");
                 OnValueChanged?.Invoke(currentValue, value);
                 currentValue = value;
             }
             get => currentValue;
         }
-        public event Action<T,T> OnValueChanged;
+
+        public Action<T,T> OnValueChanged;
 
         protected virtual void ResetValue()
         {
