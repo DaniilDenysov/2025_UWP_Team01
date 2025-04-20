@@ -9,6 +9,7 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask placementLayer;
     [SerializeField] private LayerMask buildingLayer;
+    
 
     private Building currentPreview;
     private Building prefabToPlace;
@@ -85,9 +86,11 @@ public class BuildingPlacer : MonoBehaviour
 
         currentPreview.SetPreviewMode(false);
         currentPreview.Place();
-        
+
         currentPreview = null;
         prefabToPlace = null;
+
+        
     }
 
     public void CancelPlacing()

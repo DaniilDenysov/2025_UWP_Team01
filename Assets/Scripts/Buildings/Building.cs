@@ -1,16 +1,14 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TowerDeffence.AI;
-using TowerDeffence.Interfaces;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Building : MonoBehaviour, IPrototype
 {
     [SerializeField] private int price;
-    public static List<Building> AvailableBuidings = new List<Building>();
+    [SerializeField] public UnityEvent OnTowerPlaced;
 
+    public static List<Building> AvailableBuidings = new List<Building>();
     private Renderer[] renderers;
     
     private Collider previewCollider;
@@ -29,6 +27,7 @@ public class Building : MonoBehaviour, IPrototype
     private void Start()
     {
         _economyManager = EconomyManager.Instance;
+        OnTowerPlaced.Invoke();
     }
 
     private void OnEnable()
