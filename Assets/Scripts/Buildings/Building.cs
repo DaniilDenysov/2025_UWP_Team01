@@ -3,7 +3,7 @@ using TowerDeffence.AI;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Building : MonoBehaviour, IPrototype
+public class Building : MonoBehaviour, IPrototype<Building>
 {
     [SerializeField] private int price;
     [SerializeField] public UnityEvent OnTowerPlaced;
@@ -67,10 +67,6 @@ public class Building : MonoBehaviour, IPrototype
         Remove();
     }
 
-    public GameObject Copy()
-    {
-        throw new System.NotImplementedException();
-    }
     
     public void SetPreviewMode(bool isPreview)
     {
@@ -141,5 +137,10 @@ public class Building : MonoBehaviour, IPrototype
     public static IReadOnlyList<Building> getAllBuildings()
     {
         return AvailableBuidings.AsReadOnly();
+    }
+
+    public Building Copy()
+    {
+        return (Building) MemberwiseClone();
     }
 }
