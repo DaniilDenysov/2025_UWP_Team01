@@ -49,6 +49,7 @@ namespace TowerDeffence.AI
 
     public class WaveManager : Presenter<View<WaveInfo>,Wave,WaveInfo>
     {
+        public static Action OnLastWaveFinished;
         public static Action<string, float> OnNewWaveStarted;
         [SerializeField] private Transform target, spawnPoint;
         [SerializeField] private bool randomizeDelay;
@@ -105,6 +106,7 @@ namespace TowerDeffence.AI
                     yield return new WaitForSeconds(waveDuration + GetDealy());
                 }
             }
+            OnLastWaveFinished?.Invoke();
         }
 
         //TODO: [DD] account for delay in the duration calculation
