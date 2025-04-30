@@ -32,6 +32,11 @@ namespace TowerDeffence.HealthSystem
             return isDead;
         }
 
+        public uint GetCurrentHealthPoints()
+        {
+            return (uint)health?.Current;
+        }
+
         public void UpdateModel()
         {
             OnModelUpdated?.Invoke(health);
@@ -48,6 +53,11 @@ namespace TowerDeffence.HealthSystem
         public bool DoDamage(uint damage)
         {
            return model.DoDamage(damage);
+        }
+
+        public uint GetCurrentHealthPoints()
+        {
+            return model.GetCurrentHealthPoints();
         }
     }
 }
