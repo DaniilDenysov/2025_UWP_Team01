@@ -1,8 +1,10 @@
 using System;
 using TowerDeffence.AI;
+using TowerDeffence.ObjectPools;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class BuildingPlacer : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class BuildingPlacer : MonoBehaviour
 
     private Building currentPreview;
     private Building prefabToPlace;
-
+    private ObjectPoolWrapper<Building> objectPool;
     private bool _isValidPosition;
 
     private void Awake()
@@ -22,12 +24,18 @@ public class BuildingPlacer : MonoBehaviour
             mainCamera = Camera.main;
     }
 
+    [Inject]
+    private void Construct(ObjectPoolWrapper<Building> objectPool)
+    {
+        this.objectPool = objectPool;
+    }
+
     public void StartPlacing(Building prefab)
     {
         CancelPlacing();
 
         prefabToPlace = prefab;
-        currentPreview = Instantiate(prefabToPlace);
+        currentPreview = objectPool.Get(prefabToPlace);
         currentPreview.SetPreviewMode(true);
     }
 

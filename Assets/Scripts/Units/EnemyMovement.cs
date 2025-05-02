@@ -28,6 +28,21 @@ namespace TowerDeffence.AI
             avaialableEnemies.Remove(this);
         }
 
+        public void StopAgent()
+        {
+            agent.isStopped = true;
+        }
+
+        public void StartAgent()
+        {
+            agent.isStopped = false;
+        }
+
+        public void Warp(Vector3 position)
+        {
+            agent.Warp(position);
+        }
+
         public void MoveTo(Vector3 position)
         {
             agent.SetDestination(position);

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TowerDeffence.AI;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class Building : MonoBehaviour, IPrototype<Building>
 {
@@ -13,7 +14,6 @@ public class Building : MonoBehaviour, IPrototype<Building>
     
     private Collider previewCollider;
     private Vector3 boundsExtents;
-    protected EconomyManager _economyManager;
 
     protected bool isPreviewMode;
     
@@ -24,9 +24,16 @@ public class Building : MonoBehaviour, IPrototype<Building>
         renderers = GetComponentsInChildren<Renderer>();
     }
 
+    protected EconomyManager _economyManager;
+
+    [Inject]
+    private void Construct(EconomyManager economyManager)
+    {
+        _economyManager = economyManager;
+    }
+
     private void Start()
     {
-        _economyManager = EconomyManager.Instance;
         OnTowerPlaced.Invoke();
     }
 

@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7665034398667568547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2136931752375282403}
+  - component: {fileID: 5673712207583961256}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2136931752375282403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665034398667568547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5673712207583961256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665034398667568547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9dd61144500fc46ab9b123b1ee98b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model:
+    Name: 
+    Enemies: []
+    Duration: 0
+  view: {fileID: 0}
+  target: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  randomizeDelay: 0
+  spawnDelay: 0
+  waves:
+  - Name: FirstWave
+    Enemies:
+    - EnemyData: {fileID: 11400000, guid: 1f1131c7a7964bc4ab881df6ad353113, type: 2}
+      Amount: 3
+    - EnemyData: {fileID: 11400000, guid: 0e8349e41ce7819498a0d961ae78d1bd, type: 2}
+      Amount: 7
+    Duration: 10
+  - Name: SecondWave
+    Enemies:
+    - EnemyData: {fileID: 11400000, guid: 0e8349e41ce7819498a0d961ae78d1bd, type: 2}
+      Amount: 10
+    - EnemyData: {fileID: 11400000, guid: 1f1131c7a7964bc4ab881df6ad353113, type: 2}
+      Amount: 10
+    Duration: 10
+  - Name: ThirdWave
+    Enemies:
+    - EnemyData: {fileID: 11400000, guid: 0e8349e41ce7819498a0d961ae78d1bd, type: 2}
+      Amount: 15
+    - EnemyData: {fileID: 11400000, guid: 1f1131c7a7964bc4ab881df6ad353113, type: 2}
+      Amount: 10
+    Duration: 10

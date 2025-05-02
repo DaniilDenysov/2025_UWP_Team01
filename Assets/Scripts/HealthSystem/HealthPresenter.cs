@@ -24,6 +24,11 @@ namespace TowerDeffence.HealthSystem
             set; 
         }
 
+        public void ResetHealth()
+        {
+            health.Current = health.Max;
+        }
+
         public bool DoDamage(uint damage)
         {
             bool isDead = health.Current - damage <= 0;
@@ -48,6 +53,11 @@ namespace TowerDeffence.HealthSystem
         private void Start()
         {
             model.UpdateModel();
+        }
+
+        public void ResetHealth()
+        {
+            model.ResetHealth();
         }
 
         public bool DoDamage(uint damage)

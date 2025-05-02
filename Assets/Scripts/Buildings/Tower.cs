@@ -1,5 +1,7 @@
 using TowerDeffence.AI;
+using TowerDeffence.ObjectPools;
 using UnityEngine;
+using Zenject;
 
 namespace Buildings
 {
@@ -7,9 +9,16 @@ namespace Buildings
     {
         [SerializeField] private TowerSO _towerSO;
         [SerializeField] private Transform firePoint;
-
         private float fireCountdown = 0f;
         private Transform target;
+
+        private ObjectPoolWrapper<Projectile> objectPool;
+
+        [Inject]
+        private void Construct(ObjectPoolWrapper<Projectile> objectPool)
+        {
+            this.objectPool = objectPool;
+        }
 
         private void Update()
         {
@@ -55,13 +64,14 @@ namespace Buildings
 
         private void Shoot()
         {
-            GameObject projGO = Instantiate(_towerSO.ProjectilePrefab.gameObject, firePoint.position, firePoint.rotation);
-            Projectile projectile = projGO.GetComponent<Projectile>();
-            projectile.onKilled += EconomyManager.Instance.OnKill;
+            Projectile projGO = objectPool.Get(_towerSO.ProjectilePrefab);
+            projGO.transform.position = firePoint.position;
+            projGO.transform.rotation = firePoint.rotation;
+            projGO.onKilled += _economyManager.OnKill;
 
-            if (projectile != null)
+            if (projGO != null)
             {
-                projectile.Seek(target);
+                projGO.Seek(target);
             }
         }
 

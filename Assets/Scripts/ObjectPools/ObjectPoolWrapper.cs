@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using TowerDeffence.Utilities;
 using UnityEngine;
 using UnityEngine.Pool;
+using Zenject;
+using Zenject.SpaceFighter;
 
 namespace TowerDeffence.ObjectPools
 {
-    public abstract class ObjectPoolWrapper<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class ObjectPoolWrapper<T> : MonoInstaller where T : MonoBehaviour
     {
 
         [SerializeField] protected PoolObject[] poolObjects;
@@ -28,6 +30,11 @@ namespace TowerDeffence.ObjectPools
             InitializePools();
         }
 
+        public override void InstallBindings()
+        {
+            Container.Bind<ObjectPoolWrapper<T>>().To<ObjectPoolWrapper<T>>().FromInstance(this).AsSingle().NonLazy();
+        }
+
         private void InitializePools()
         {
             foreach (var poolObj in poolObjects)
@@ -40,8 +47,9 @@ namespace TowerDeffence.ObjectPools
 
                 if (!reverseMappings.ContainsKey(poolObj.Prefab))
                 {
+                    var guid = Guid.NewGuid().ToString();
                     var newPool = new ObjectPool<T>(
-                        createFunc: () => Instantiate(poolObj.Prefab),
+                        createFunc: () => Container.InstantiatePrefab(poolObj.Prefab.gameObject).GetComponent<T>(),
                         actionOnGet: OnTakenFromPool,
                         actionOnRelease: OnReturnedToPool,
                         actionOnDestroy: OnDestroyPoolObject,
@@ -49,7 +57,8 @@ namespace TowerDeffence.ObjectPools
                         defaultCapacity: poolObj.DefaultCapacity,
                         maxSize: poolObj.MaxCapacity
                     );
-                    mappings.Add(Guid.NewGuid().ToString(), newPool);
+                    mappings.Add(guid, newPool);
+                    reverseMappings.Add(poolObj.Prefab, guid);
                 }
                 else
                 {
