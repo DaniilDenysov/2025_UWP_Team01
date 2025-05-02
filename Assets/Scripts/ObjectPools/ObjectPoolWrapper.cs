@@ -128,6 +128,7 @@ namespace TowerDeffence.ObjectPools
 
         public void Release(T obj)
         {
+            if (obj == null) return;
             if (buffer.TryGetValue(obj, out string guid))
             {
                 if (mappings.TryGetValue(guid, out ObjectPool<T> pool))

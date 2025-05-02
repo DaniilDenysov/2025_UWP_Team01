@@ -1,5 +1,9 @@
+using System.Collections.Generic;
 using TowerDeffence.AI;
+using TowerDeffence.Buildings.Strategies;
 using TowerDeffence.ObjectPools;
+using TowerDeffence.UI;
+using TowerDeffence.Utilities;
 using UnityEngine;
 using Zenject;
 
@@ -11,13 +15,18 @@ namespace Buildings
         [SerializeField] private Transform firePoint;
         private float fireCountdown = 0f;
         private Transform target;
-
+        private IAttackStrategyHandler<EnemyMovement> strategySelector;
         private ObjectPoolWrapper<Projectile> objectPool;
 
         [Inject]
         private void Construct(ObjectPoolWrapper<Projectile> objectPool)
         {
             this.objectPool = objectPool;
+        }
+
+        private void Start()
+        {
+            strategySelector = new ClosestEnemy() { myPosition = transform };
         }
 
         private void Update()
@@ -36,21 +45,15 @@ namespace Buildings
             }
         }
 
+        public void SetStrategySelector(IAttackStrategyHandler<EnemyMovement> strategySelector)
+        {
+            this.strategySelector = strategySelector;
+            DebugUtility.PrintLine("Strategy changed!");
+        }
+
         private void FindTarget()
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            float shortestDistance = Mathf.Infinity;
-            GameObject nearestEnemy = null;
-
-            foreach (GameObject enemy in enemies)
-            {
-                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distanceToEnemy < shortestDistance && distanceToEnemy <= _towerSO.Range)
-                {
-                    shortestDistance = distanceToEnemy;
-                    nearestEnemy = enemy;
-                }
-            }
+            EnemyMovement nearestEnemy = strategySelector?.GetEnemy(new List<EnemyMovement>(EnemyMovement.AvailableEnemies));
 
             if (nearestEnemy != null)
             {

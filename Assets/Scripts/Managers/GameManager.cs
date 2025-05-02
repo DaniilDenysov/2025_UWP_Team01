@@ -43,8 +43,11 @@ namespace TowerDeffence.Managers
 
         public override void OnDisable()
         {
-            cancellationTokenSource?.Cancel();
-            cancellationTokenSource?.Dispose();
+            if (!(cancellationTokenSource.IsCancellationRequested || cancellationTokenSource == null))
+            {
+                cancellationTokenSource?.Cancel();
+                cancellationTokenSource?.Dispose();
+            }
             WaveManager.OnLastWaveFinished -= OnLastWaveFinished;
         }
 

@@ -9,25 +9,26 @@ using TowerDeffence.HealthSystem;
 namespace TowerDeffence.Buildings.Strategies
 {
     [System.Serializable]
-    public abstract class AttackStrategy<T> where T : Object
+    public abstract class AttackStrategy
     {
-        protected Transform myPosition;
-        public AttackStrategy(Transform myPosition)
-        {
-            this.myPosition = myPosition;
-        }
-        public abstract T GetEnemy(List<T> enemies);
+        [SerializeField] public Transform myPosition;
+    }
+
+    public interface IAttackStrategyHandler
+    {
+        Object GetEnemy(List<Object> enemies);
+    }
+
+
+    public interface IAttackStrategyHandler<T> : IAttackStrategyHandler
+    {
+        public T GetEnemy(List<T> enemies);
     }
 
     [System.Serializable]
-    public class LowestHealthOpponent : AttackStrategy<HealthPresenter>
+    public class LowestHealthOpponent : AttackStrategy, IAttackStrategyHandler<HealthPresenter>
     {
-        public LowestHealthOpponent(Transform myPosition) : base(myPosition)
-        {
-
-        }
-
-        public override HealthPresenter GetEnemy(List<HealthPresenter> enemies)
+        public HealthPresenter GetEnemy(List<HealthPresenter> enemies)
         {
             if (enemies == null)
             {
@@ -43,17 +44,17 @@ namespace TowerDeffence.Buildings.Strategies
                 return float.MinValue;
             }).LastOrDefault();
         }
+
+        public Object GetEnemy(List<Object> enemies)
+        {
+            return GetEnemy(enemies);
+        }
     }
 
     [System.Serializable]
-    public class ClosestEnemy : AttackStrategy<EnemyMovement>
+    public class ClosestEnemy : AttackStrategy, IAttackStrategyHandler<EnemyMovement>
     {
-        public ClosestEnemy(Transform myPosition) : base(myPosition)
-        {
-
-        }
-
-        public override EnemyMovement GetEnemy(List<EnemyMovement> enemies)
+        public EnemyMovement GetEnemy(List<EnemyMovement> enemies)
         {
             if (enemies == null)
             {
@@ -70,17 +71,17 @@ namespace TowerDeffence.Buildings.Strategies
 
             }).LastOrDefault();
         }
+
+        public Object GetEnemy(List<Object> enemies)
+        {
+            return GetEnemy(enemies);
+        }
     }
 
     [System.Serializable]
-    public class ClosestTower : AttackStrategy<Building>
+    public class ClosestTower : AttackStrategy, IAttackStrategyHandler<Building>
     {
-        public ClosestTower(Transform myPosition) : base(myPosition)
-        {
-
-        }
-
-        public override Building GetEnemy(List<Building> buildings)
+        public Building GetEnemy(List<Building> buildings)
         {
             if (buildings == null)
             {
@@ -96,6 +97,11 @@ namespace TowerDeffence.Buildings.Strategies
                 return float.MinValue;
 
             }).LastOrDefault();
+        }
+
+        public Object GetEnemy(List<Object> enemies)
+        {
+            return GetEnemy(enemies);
         }
     }
 }
