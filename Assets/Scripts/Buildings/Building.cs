@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using TowerDeffence.AI;
 using TowerDeffence.Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IPrototype
+public class Building : MonoBehaviour, IPrototype, IPlacable
 {
     [SerializeField] private int price;
     public static List<Building> AvailableBuidings = new List<Building>();
@@ -16,8 +17,11 @@ public class Building : MonoBehaviour, IPrototype
     private Collider previewCollider;
     private Vector3 boundsExtents;
     protected EconomyManager _economyManager;
-
+    
+    private bool _isPositionValid;
     protected bool isPreviewMode;
+
+    private BuildingPlacer _buildingPlacer;
     
     private void Awake()
     {
@@ -37,11 +41,6 @@ public class Building : MonoBehaviour, IPrototype
     }
 
     private void OnDisable()
-    {
-        AvailableBuidings.Remove(this);
-    }
-
-    private void OnDestroy()
     {
         AvailableBuidings.Remove(this);
     }
@@ -142,5 +141,69 @@ public class Building : MonoBehaviour, IPrototype
     public static IReadOnlyList<Building> getAllBuildings()
     {
         return AvailableBuidings.AsReadOnly();
+    }
+
+    public void SubscribeToPlacing(BuildingPlacer buildingPlacer)
+    {
+        _buildingPlacer = buildingPlacer;
+        
+        _buildingPlacer.OnUpdatePlacement += OnPlacing;
+        _buildingPlacer.OnEndedPlacement += OnEndedPlace;
+    }
+
+    public void UnsubscribeToPlacing()
+    {
+        if (_buildingPlacer == null) return; 
+        
+        _buildingPlacer.OnUpdatePlacement -= OnPlacing;
+        _buildingPlacer.OnEndedPlacement -= OnEndedPlace;
+        
+        _buildingPlacer = null;
+    }
+
+    public void OnStartedPlace()
+    {
+        SetPreviewMode(true);
+    }
+
+    public void OnPlacing(Vector3 position, bool isValid)
+    {
+        transform.position = position;
+        _isPositionValid = isValid && !IsBlockedByBuilding();
+        SetPreviewValid(isValid && !IsBlockedByBuilding());
+    }
+
+    public void OnEndedPlace()
+    {
+        if (!_isPositionValid)
+        {
+            Debug.Log("Cannot place building here — something's in the way.");
+            Destroy(gameObject);
+        }
+        
+        SetPreviewMode(false);
+        Place();
+        UnsubscribeToPlacing();
+    }
+
+    private bool IsBlockedByBuilding()
+    {
+        Vector3 size = previewCollider.bounds.size;
+        Collider[] overlapping = 
+            Physics.OverlapBox(transform.position, size / 2, Quaternion.identity, gameObject.layer);
+
+        foreach (var col in overlapping)
+        {
+            if (!col.transform.gameObject.Equals(previewCollider.transform.gameObject))
+                return true;
+        }
+
+        return false;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeToPlacing();
+        AvailableBuidings.Remove(this);
     }
 }
