@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using TowerDeffence.AI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
@@ -38,7 +39,8 @@ namespace TowerDeffence.UI.View
         {
             if (_buildPrefab != null && _buildingPlacer != null)
             {
-                _buildingPlacer.StartPlacing(_buildPrefab);
+                IPlacable newBuildingInstance = Instantiate(_buildPrefab);
+                _buildingPlacer.StartPlacing(newBuildingInstance);
                 SetSelected(true);
             }
         }
