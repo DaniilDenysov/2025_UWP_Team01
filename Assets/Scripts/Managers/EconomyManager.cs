@@ -1,9 +1,4 @@
-using System;
-using TowerDeffence.UI.Model.Varialbes;
-using TowerDeffence.UI.Presenter;
 using TowerDeffence.UI.Presenter.Variables;
-using TowerDeffence.UI.View.Variables;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TowerDeffence.AI
@@ -11,19 +6,6 @@ namespace TowerDeffence.AI
     public class EconomyManager : IntegerPresenter
     {
         [SerializeField] private int _enemyPrice;
-        public static EconomyManager Instance;
-
-        public void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(this);
-            }
-        }
 
         public void OnKill()
         {

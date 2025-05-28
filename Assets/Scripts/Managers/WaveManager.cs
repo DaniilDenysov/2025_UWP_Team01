@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TowerDeffence.AI.Data;
+using TowerDeffence.Buildings;
+using TowerDeffence.ObjectPools;
 using TowerDeffence.UI.Model;
 using TowerDeffence.UI.Presenter;
 using TowerDeffence.UI.View;
 using TowerDeffence.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace TowerDeffence.AI
 {
@@ -49,11 +52,19 @@ namespace TowerDeffence.AI
 
     public class WaveManager : Presenter<View<WaveInfo>,Wave,WaveInfo>
     {
+        public static Action OnLastWaveFinished;
         public static Action<string, float> OnNewWaveStarted;
         [SerializeField] private Transform target, spawnPoint;
         [SerializeField] private bool randomizeDelay;
         [SerializeField, Range(0, 100)] private float spawnDelay;
         [SerializeField] private List<Wave> waves = new List<Wave>();
+        private ObjectPoolWrapper<EnemyMovement> unitObjectPool;
+
+        [Inject]
+        protected void Construct(ObjectPoolWrapper<EnemyMovement> unitObjectPool)
+        {
+            this.unitObjectPool = unitObjectPool;
+        }
 
         protected override void OnEnable()
         {
@@ -100,11 +111,16 @@ namespace TowerDeffence.AI
                     if (waveEnemy == null) break;
                     waveEnemy.Amount--;
                     //TODO: [DD] refacctor to pool
-                    EnemyMovement instance = Instantiate(waveEnemy.EnemyData.Prefab,spawnPoint.position, Quaternion.identity);
+                    EnemyMovement instance = unitObjectPool.Get(waveEnemy.EnemyData.Prefab);
+                    instance.StopAgent();
+                    instance.Warp(spawnPoint.position);
+                    instance.transform.rotation = Quaternion.identity;
+                    instance.StartAgent();
                     instance.MoveTo(target.position);
                     yield return new WaitForSeconds(waveDuration + GetDealy());
                 }
             }
+            OnLastWaveFinished?.Invoke();
         }
 
         //TODO: [DD] account for delay in the duration calculation

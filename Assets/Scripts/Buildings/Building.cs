@@ -1,17 +1,17 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using TowerDeffence.AI;
 using TowerDeffence.Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using Zenject;
 
-public class Building : MonoBehaviour, IPrototype, IPlacable
+public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
 {
     [SerializeField] private int price;
-    public static List<Building> AvailableBuidings = new List<Building>();
+    [SerializeField] public UnityEvent OnTowerPlaced;
 
+    public static List<Building> AvailableBuidings = new List<Building>();
     private Renderer[] renderers;
     
     private Collider previewCollider;
@@ -30,9 +30,17 @@ public class Building : MonoBehaviour, IPrototype, IPlacable
         renderers = GetComponentsInChildren<Renderer>();
     }
 
+    protected EconomyManager _economyManager;
+
+    [Inject]
+    private void Construct(EconomyManager economyManager)
+    {
+        _economyManager = economyManager;
+    }
+
     private void Start()
     {
-        _economyManager = EconomyManager.Instance;
+        OnTowerPlaced.Invoke();
     }
 
     private void OnEnable()
@@ -67,10 +75,6 @@ public class Building : MonoBehaviour, IPrototype, IPlacable
         Remove();
     }
 
-    public GameObject Copy()
-    {
-        throw new System.NotImplementedException();
-    }
     
     public void SetPreviewMode(bool isPreview)
     {
@@ -205,5 +209,10 @@ public class Building : MonoBehaviour, IPrototype, IPlacable
     {
         UnsubscribeToPlacing();
         AvailableBuidings.Remove(this);
+    } 
+       
+    public Building Copy()
+    {
+        return (Building) MemberwiseClone();
     }
 }

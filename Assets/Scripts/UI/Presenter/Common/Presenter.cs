@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDeffence.UI.Model;
@@ -10,6 +11,12 @@ namespace TowerDeffence.UI.Presenter
     {
         [SerializeField] protected M model;
         [SerializeField] protected V view;
+
+        public Action<T> OnModelUpdatedAction
+        {
+            get => model.OnModelUpdated;
+            set => model.OnModelUpdated += value;
+        }
 
         protected virtual void OnEnable()
         {

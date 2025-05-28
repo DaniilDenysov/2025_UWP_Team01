@@ -1,5 +1,9 @@
 using System;
+using TowerDeffence.AI;
+using TowerDeffence.ObjectPools;
+using TowerDeffence.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace Buildings
 {
@@ -9,6 +13,20 @@ namespace Buildings
         public float force = 50000f;
         private Rigidbody rb;
         public Action onKilled;
+        private ObjectPoolWrapper<EnemyMovement> enemyObjectPool;
+        private ObjectPoolWrapper<Projectile> projectileObjectPool;
+
+        [Inject]
+        private void Construct(ObjectPoolWrapper<EnemyMovement> enemyObjectPool, ObjectPoolWrapper<Projectile> projectileObjectPool)
+        {
+            this.enemyObjectPool = enemyObjectPool;
+            this.projectileObjectPool = projectileObjectPool;
+        }
+
+        public void OnObjectReturnedToPool()
+        {
+            rb.velocity = Vector3.zero;
+        }
 
         public void Seek(Transform target)
         {
@@ -20,18 +38,13 @@ namespace Buildings
             }
         }
 
-        void Start()
-        {
-            Destroy(gameObject, 5f);
-        }
-
         void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.gameObject.TryGetComponent(out EnemyMovement enemyMovement))
             {
-                Destroy(other.gameObject);
+                enemyObjectPool.Release(enemyMovement); 
                 onKilled.Invoke();
-                Destroy(gameObject);
+                projectileObjectPool.Release(this);
             }
         }
     }

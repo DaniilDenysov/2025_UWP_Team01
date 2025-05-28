@@ -24,12 +24,22 @@ namespace TowerDeffence.HealthSystem
             set; 
         }
 
+        public void ResetHealth()
+        {
+            health.Current = health.Max;
+        }
+
         public bool DoDamage(uint damage)
         {
             bool isDead = health.Current - damage <= 0;
             health.Current = (int)Mathf.Clamp(health.Current - damage, 0, health.Max);
             OnModelUpdated?.Invoke(health);
             return isDead;
+        }
+
+        public uint GetCurrentHealthPoints()
+        {
+            return (uint)health?.Current;
         }
 
         public void UpdateModel()
@@ -45,9 +55,19 @@ namespace TowerDeffence.HealthSystem
             model.UpdateModel();
         }
 
+        public void ResetHealth()
+        {
+            model.ResetHealth();
+        }
+
         public bool DoDamage(uint damage)
         {
            return model.DoDamage(damage);
+        }
+
+        public uint GetCurrentHealthPoints()
+        {
+            return model.GetCurrentHealthPoints();
         }
     }
 }

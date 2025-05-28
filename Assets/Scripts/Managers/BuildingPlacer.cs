@@ -1,15 +1,20 @@
 using System;
 using TowerDeffence.AI;
+using TowerDeffence.ObjectPools;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class BuildingPlacer : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask placementLayer;
     [SerializeField] private LayerMask buildingLayer;
-
+    
+    private Building currentPreview;
+    private Building prefabToPlace;
+    private ObjectPoolWrapper<Building> objectPool;
     private bool _isValidPosition;
     public Action<Vector3, bool> OnUpdatePlacement;
     public Action OnEndedPlacement;
@@ -18,6 +23,12 @@ public class BuildingPlacer : MonoBehaviour
     {
         if (mainCamera == null)
             mainCamera = Camera.main;
+    }
+
+    [Inject]
+    private void Construct(ObjectPoolWrapper<Building> objectPool)
+    {
+        this.objectPool = objectPool;
     }
 
     public void StartPlacing(IPlacable prefab)
@@ -64,7 +75,6 @@ public class BuildingPlacer : MonoBehaviour
     public void FinalizePlacement()
     {
         if (OnEndedPlacement == null) return;
-
         OnEndedPlacement?.Invoke();
     }
     
