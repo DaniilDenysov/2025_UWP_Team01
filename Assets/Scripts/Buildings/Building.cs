@@ -30,8 +30,6 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
         renderers = GetComponentsInChildren<Renderer>();
     }
 
-    protected EconomyManager _economyManager;
-
     [Inject]
     private void Construct(EconomyManager economyManager)
     {
