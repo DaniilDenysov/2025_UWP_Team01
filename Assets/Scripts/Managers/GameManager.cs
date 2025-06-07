@@ -1,8 +1,10 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using TMPro;
 using TowerDeffence.AI;
 using TowerDeffence.HealthSystem;
+using TowerDeffence.UI.Strategies;
 using TowerDeffence.Utilities;
 using UnityEngine;
 
@@ -106,13 +108,15 @@ namespace TowerDeffence.Managers
             if (health == null) return;
             if (health.Current <= 0)
             {
-                ConditionFulfilled("Last enemy destroyed!");
+                ConditionFulfilled("Your kingdom destroyed!");
             }
         }
     }
 
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private TMP_Text status, description;
+        [SerializeReference, SubclassSelector] private ScreenStrategy screenStrategy;
         [SerializeReference, SerializeField, SubclassSelector] private ConditionStrategy winCondiotion;
         [SerializeReference, SerializeField, SubclassSelector] private ConditionStrategy loseCondiotion;
 
@@ -134,12 +138,16 @@ namespace TowerDeffence.Managers
 
         private void OnLoseConditionFullfilled(string reason)
         {
-            DebugUtility.PrintLine("Lose condition fullfilled!");
+            screenStrategy.SetActive(true);
+            status.text = "You lost!";
+            description.text = reason;
         }
 
         private void OnWinConditionFullfilled(string reason)
         {
-            DebugUtility.PrintLine("Win condition fullfilled!");
+            screenStrategy.SetActive(true);
+            status.text = "You won!";
+            description.text = reason;
         }
     }
 }
