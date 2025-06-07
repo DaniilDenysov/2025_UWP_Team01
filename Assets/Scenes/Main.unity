@@ -3102,6 +3102,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1074392118}
+  - component: {fileID: 1074392120}
+  - component: {fileID: 1074392119}
   m_Layer: 5
   m_Name: Closed
   m_TagString: Untagged
@@ -3129,6 +3131,47 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1074392119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074392117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa541dbf077d3845b455137e2bcd64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenStrategy:
+    rid: 4300612358944325634
+  references:
+    version: 2
+    RefIds:
+    - rid: 4300612358944325634
+      type: {class: FadeInAndOutSingleScreenStrategy, ns: TowerDeffence.UI.Strategies,
+        asm: Assembly-CSharp}
+      data:
+        screen:
+          rid: 4300612358944325635
+        canvasGroup: {fileID: 1074392120}
+        fadeDuration: 0.5
+    - rid: 4300612358944325635
+      type: {class: SingleScreenStrategy, ns: TowerDeffence.UI.Strategies, asm: Assembly-CSharp}
+      data:
+        screen: {fileID: 1074392117}
+--- !u!225 &1074392120
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074392117}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1118741140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3211,8 +3254,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1878753037}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+      - m_Target: {fileID: 1878753040}
+        m_TargetAssemblyTypeName: TowerDeffence.UI.Strategies.ScreenStrategyHolder,
+          Assembly-CSharp
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -3223,8 +3267,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1074392117}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+      - m_Target: {fileID: 1074392119}
+        m_TargetAssemblyTypeName: TowerDeffence.UI.Strategies.ScreenStrategyHolder,
+          Assembly-CSharp
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -3535,6 +3580,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: bbdf91596bb12c645a31a7789f882261,
     type: 3}
   m_PrefabInstance: {fileID: 1176756203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1178126395
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2059587629}
+    m_Modifications:
+    - target: {fileID: 3362023816511333374, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: order
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362023816511333374, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: description
+      value: In order to change the behavior of the tower, select it in the hud of
+        the tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911529624889797806, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialAnchor (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6e28b9c87f5005439c13a158346d42a, type: 3}
+--- !u!224 &1178126396 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1178126395}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1191713715
 PrefabInstance:
@@ -4833,8 +5013,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1074392117}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+      - m_Target: {fileID: 1074392119}
+        m_TargetAssemblyTypeName: TowerDeffence.UI.Strategies.ScreenStrategyHolder,
+          Assembly-CSharp
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -4845,8 +5026,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1878753037}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+      - m_Target: {fileID: 1878753040}
+        m_TargetAssemblyTypeName: TowerDeffence.UI.Strategies.ScreenStrategyHolder,
+          Assembly-CSharp
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -5349,6 +5531,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878753038}
+  - component: {fileID: 1878753039}
+  - component: {fileID: 1878753040}
   m_Layer: 5
   m_Name: Opened
   m_TagString: Untagged
@@ -5377,6 +5561,47 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1878753039
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878753037}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1878753040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878753037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa541dbf077d3845b455137e2bcd64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenStrategy:
+    rid: 4300612358944325632
+  references:
+    version: 2
+    RefIds:
+    - rid: 4300612358944325632
+      type: {class: FadeInAndOutSingleScreenStrategy, ns: TowerDeffence.UI.Strategies,
+        asm: Assembly-CSharp}
+      data:
+        screen:
+          rid: 4300612358944325636
+        canvasGroup: {fileID: 1878753039}
+        fadeDuration: 0.5
+    - rid: 4300612358944325636
+      type: {class: SingleScreenStrategy, ns: TowerDeffence.UI.Strategies, asm: Assembly-CSharp}
+      data:
+        screen: {fileID: 1878753037}
 --- !u!1 &1883995030
 GameObject:
   m_ObjectHideFlags: 0
@@ -6081,6 +6306,7 @@ RectTransform:
   m_Children:
   - {fileID: 207754403}
   - {fileID: 416059422}
+  - {fileID: 1178126396}
   m_Father: {fileID: 1883995031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7280,6 +7506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TutorialLabelObjectPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709942582042111598, guid: 671aebe018429b146810a4bdfcbe5754,
+        type: 3}
+      propertyPath: poolObjects.Array.data[0].DefaultCapacity
+      value: 32990
       objectReference: {fileID: 0}
     - target: {fileID: 8632555265850922013, guid: 671aebe018429b146810a4bdfcbe5754,
         type: 3}

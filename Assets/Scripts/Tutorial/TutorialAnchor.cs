@@ -54,16 +54,16 @@ namespace TowerDeffence.Tutorial
 
         public void StopStep()
         {
-            objectPool.Release(cachedLabel);
+            cachedLabel.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            cachedLabel?.gameObject.SetActive(false);
-            if (tutorialAnchors.TryGetValue(order, out var anchor))
-            {
-                if (anchor == this) tutorialAnchors.Remove(order);
-            }
+            //cachedLabel?.SetActive(false);
+            //if (tutorialAnchors.TryGetValue(order, out var anchor))
+            //{
+            //    if (anchor == this) tutorialAnchors.Remove(order);
+            //}
         }
     }
 }
