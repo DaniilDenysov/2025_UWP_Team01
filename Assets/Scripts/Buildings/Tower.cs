@@ -7,7 +7,7 @@ using TowerDeffence.Utilities;
 using UnityEngine;
 using Zenject;
 
-namespace Buildings
+namespace TowerDeffence.Buildings
 {
     public class Tower : Building
     {

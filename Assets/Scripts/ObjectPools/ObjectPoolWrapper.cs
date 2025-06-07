@@ -49,7 +49,12 @@ namespace TowerDeffence.ObjectPools
                 {
                     var guid = Guid.NewGuid().ToString();
                     var newPool = new ObjectPool<T>(
-                        createFunc: () => Container.InstantiatePrefab(poolObj.Prefab.gameObject).GetComponent<T>(),
+                        createFunc: () =>
+                        {
+                            var obj = Container.InstantiatePrefab(poolObj.Prefab.gameObject);
+                          // Container.Inject(obj);
+                            return obj.GetComponent<T>();
+                        },
                         actionOnGet: OnTakenFromPool,
                         actionOnRelease: OnReturnedToPool,
                         actionOnDestroy: OnDestroyPoolObject,

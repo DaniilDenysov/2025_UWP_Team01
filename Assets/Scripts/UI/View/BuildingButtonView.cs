@@ -1,9 +1,11 @@
 using System;
 using TMPro;
 using TowerDeffence.AI;
+using TowerDeffence.ObjectPools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using Zenject;
 using Image = UnityEngine.UI.Image;
 
 namespace TowerDeffence.UI.View
@@ -16,7 +18,7 @@ namespace TowerDeffence.UI.View
         [Header("Colors")]
         public Color normalColor = Color.white;
         public Color selectedColor = Color.green;
-
+        private ObjectPoolWrapper<Building> objectPool;
         private Button button;
         private Image buttonImage;
 
@@ -35,11 +37,17 @@ namespace TowerDeffence.UI.View
             buttonImage.color = isSelected ? selectedColor : normalColor;
         }
 
+        [Inject]
+        private void Construct(ObjectPoolWrapper<Building> objectPool)
+        {
+            this.objectPool = objectPool;
+        }
+
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (_buildPrefab != null && _buildingPlacer != null)
             {
-                IPlacable newBuildingInstance = Instantiate(_buildPrefab);
+                IPlacable newBuildingInstance = objectPool.Get(_buildPrefab);
                 _buildingPlacer.StartPlacing(newBuildingInstance);
                 SetSelected(true);
             }

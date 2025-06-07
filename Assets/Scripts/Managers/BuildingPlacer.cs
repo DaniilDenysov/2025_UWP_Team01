@@ -14,7 +14,6 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private Grid grid;
     private Building currentPreview;
     private Building prefabToPlace;
-    private ObjectPoolWrapper<Building> objectPool;
     private bool _isValidPosition;
     public Action<Vector3, bool> OnUpdatePlacement;
     public Action OnEndedPlacement;
@@ -23,12 +22,6 @@ public class BuildingPlacer : MonoBehaviour
     {
         if (mainCamera == null)
             mainCamera = Camera.main;
-    }
-
-    [Inject]
-    private void Construct(ObjectPoolWrapper<Building> objectPool)
-    {
-        this.objectPool = objectPool;
     }
 
     public void StartPlacing(IPlacable prefab)

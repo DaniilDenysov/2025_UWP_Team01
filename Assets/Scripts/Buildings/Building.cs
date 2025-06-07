@@ -33,6 +33,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
     [Inject]
     private void Construct(EconomyManager economyManager)
     {
+        Debug.Log("CONSTRUCTED!");
         _economyManager = economyManager;
     }
 

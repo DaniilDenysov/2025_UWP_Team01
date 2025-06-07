@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Buildings
+namespace TowerDeffence.Buildings
 {
     [CreateAssetMenu(fileName = "create new tower", menuName = "TowerDeffence/Buildings/Tower")]
     public class TowerSO : ScriptableObject
