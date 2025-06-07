@@ -54,7 +54,12 @@ namespace TowerDeffence.AI
     {
         public static Action OnLastWaveFinished;
         public static Action<string, float> OnNewWaveStarted;
-        [SerializeField] private Transform target, spawnPoint;
+        [SerializeField] private Transform target;
+        private Transform spawnPoint
+        {
+            get => spawnpoints[UnityEngine.Random.Range(0, spawnpoints.Length)];
+        }
+        [SerializeField] private Transform[] spawnpoints;
         [SerializeField] private bool randomizeDelay;
         [SerializeField, Range(0, 100)] private float spawnDelay;
         [SerializeField] private List<Wave> waves = new List<Wave>();

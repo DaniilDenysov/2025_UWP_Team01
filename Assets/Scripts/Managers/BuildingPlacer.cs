@@ -11,7 +11,7 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask placementLayer;
     [SerializeField] private LayerMask buildingLayer;
-    
+    [SerializeField] private Grid grid;
     private Building currentPreview;
     private Building prefabToPlace;
     private ObjectPoolWrapper<Building> objectPool;
@@ -48,18 +48,10 @@ public class BuildingPlacer : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, ~buildingLayer))
         {
-            placePos = hit.point;
-            GameObject hitObject = hit.transform.gameObject;
-            
-            if (IsLayerInMask(placementLayer, hitObject.layer))
-            {
-                placePos = new Vector3(hitObject.transform.position.x, 
-                    placePos.y, hitObject.transform.position.z);
-            }
-            else
-            {
+            Vector3Int cell = grid.WorldToCell(hit.point);
+            placePos = grid.CellToWorld(cell);
+            if (!IsLayerInMask(placementLayer, hit.collider.gameObject.layer)) 
                 isValidPosition = false;
-            }
         }
         else
         {

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RangeAttack
   m_EditorClassIdentifier: 
   damage: 25
-  range: 10
+  range: 20
   rate: 5
