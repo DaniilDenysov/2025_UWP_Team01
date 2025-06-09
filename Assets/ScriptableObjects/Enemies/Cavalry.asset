@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4ac4cb312b575468ec12e60f1bce5a, type: 3}
+  m_Name: Cavalry
+  m_EditorClassIdentifier: 
+  enemyIcon: {fileID: -869685435, guid: c5f5116afc8b4934aacb81a0e106ed1d, type: 3}
+  enemyName: Cavalry
+  prefab: {fileID: 8951960418556839814, guid: f04f8828e67e941439680e69b30c241c, type: 3}
