@@ -7,9 +7,12 @@ namespace TowerDeffence.Buildings
     {
         [SerializeField] private Projectile projectilePrefab;
         public Projectile ProjectilePrefab { get => projectilePrefab; }
-        [SerializeField] private float fireRate = 1f;
+        [SerializeField, Range(1,100)] private float fireRate = 1f;
         public float FireRate { get => fireRate; }
-        [SerializeField] private float range = 30f;
+        [SerializeField, Range(1,100)] private float range = 30f;
         public float Range { get => range; }
+
+        [SerializeField, Range(1,100)] private float damage = 1f;
+        public float Damage { get => damage; }
     }
 }

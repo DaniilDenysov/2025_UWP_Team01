@@ -21,11 +21,11 @@ namespace TowerDeffence.Tutorial
         [SerializeField] private int order;
         public int Order => order;
 
-        private ObjectPoolWrapper<TutorialLabel> objectPool;
+        private IObjectPool<TutorialLabel> objectPool;
         private TutorialLabel cachedLabel;
 
         [Inject]
-        private void Construct(ObjectPoolWrapper<TutorialLabel> objectPool)
+        private void Construct(IObjectPool<TutorialLabel> objectPool)
         {
             this.objectPool = objectPool;
         }
@@ -46,7 +46,7 @@ namespace TowerDeffence.Tutorial
 
         public void StartStep()
         {
-            cachedLabel = objectPool.Get(tutorialLabelPrefab);
+            cachedLabel = objectPool.GetObject(tutorialLabelPrefab);
             cachedLabel.transform.SetParent(transform);
             cachedLabel.transform.position = transform.position;
             cachedLabel.Initialize(description);

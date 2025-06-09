@@ -18,7 +18,7 @@ namespace TowerDeffence.UI.View
         [Header("Colors")]
         public Color normalColor = Color.white;
         public Color selectedColor = Color.green;
-        private ObjectPoolWrapper<Building> objectPool;
+        private IObjectPool<Building> objectPool;
         private Button button;
         private Image buttonImage;
 
@@ -38,7 +38,7 @@ namespace TowerDeffence.UI.View
         }
 
         [Inject]
-        private void Construct(ObjectPoolWrapper<Building> objectPool)
+        private void Construct(IObjectPool<Building> objectPool)
         {
             this.objectPool = objectPool;
         }
@@ -47,7 +47,7 @@ namespace TowerDeffence.UI.View
         {
             if (_buildPrefab != null && _buildingPlacer != null)
             {
-                IPlacable newBuildingInstance = objectPool.Get(_buildPrefab);
+                IPlacable newBuildingInstance = objectPool.GetObject(_buildPrefab);
                 _buildingPlacer.StartPlacing(newBuildingInstance);
                 SetSelected(true);
             }

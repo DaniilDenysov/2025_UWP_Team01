@@ -8,7 +8,7 @@ using Zenject.SpaceFighter;
 
 namespace TowerDeffence.ObjectPools
 {
-    public abstract class ObjectPoolWrapper<T> : MonoInstaller where T : MonoBehaviour
+    public abstract class ObjectPoolWrapper<T> : MonoInstaller, IObjectPool<T> where T : MonoBehaviour
     {
 
         [SerializeField] protected PoolObject[] poolObjects;
@@ -32,7 +32,7 @@ namespace TowerDeffence.ObjectPools
 
         public override void InstallBindings()
         {
-            Container.Bind<ObjectPoolWrapper<T>>().To<ObjectPoolWrapper<T>>().FromInstance(this).AsSingle().NonLazy();
+            Container.Bind<IObjectPool<T>>().To<ObjectPoolWrapper<T>>().FromInstance(this).AsSingle().NonLazy();
         }
 
         private void InitializePools()
@@ -150,6 +150,16 @@ namespace TowerDeffence.ObjectPools
             {
                 DebugUtility.PrintWarning("Failed to get GUID for object: " + obj.name);
             }
+        }
+
+        public T GetObject(T prefab)
+        {
+            return Get(prefab);
+        }
+
+        public void ReleaseObject(T prefab)
+        {
+            Release(prefab);
         }
     }
 

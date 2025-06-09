@@ -15,8 +15,8 @@ namespace TowerDeffence.Buildings
         public float force = 50000f;
         private Rigidbody rb;
         public Action onKilled;
-        private ObjectPoolWrapper<EnemyMovement> enemyObjectPool;
-        private ObjectPoolWrapper<Projectile> projectileObjectPool;
+        private IObjectPool<EnemyMovement> enemyObjectPool;
+        private IObjectPool<Projectile> projectileObjectPool;
         private Quaternion originalRotation;
 
 
@@ -26,7 +26,7 @@ namespace TowerDeffence.Buildings
         }
 
         [Inject]
-        private void Construct(ObjectPoolWrapper<EnemyMovement> enemyObjectPool, ObjectPoolWrapper<Projectile> projectileObjectPool)
+        private void Construct(IObjectPool<EnemyMovement> enemyObjectPool, IObjectPool<Projectile> projectileObjectPool)
         {
             this.enemyObjectPool = enemyObjectPool;
             this.projectileObjectPool = projectileObjectPool;
@@ -72,10 +72,10 @@ namespace TowerDeffence.Buildings
         {
             if (other.gameObject.TryGetComponent(out EnemyMovement enemyMovement))
             {
-                enemyObjectPool.Release(enemyMovement); 
+                enemyObjectPool.ReleaseObject(enemyMovement); 
                 onKilled.Invoke();
             }
-            projectileObjectPool.Release(this);
+            projectileObjectPool.ReleaseObject(this);
         }
     }
 }

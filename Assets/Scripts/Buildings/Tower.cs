@@ -16,10 +16,10 @@ namespace TowerDeffence.Buildings
         private float fireCountdown = 0f;
         private Transform target;
         private IAttackStrategyHandler<EnemyMovement> strategySelector;
-        private ObjectPoolWrapper<Projectile> objectPool;
+        private IObjectPool<Projectile> objectPool;
 
         [Inject]
-        private void Construct(ObjectPoolWrapper<Projectile> objectPool)
+        private void Construct(IObjectPool<Projectile> objectPool)
         {
             this.objectPool = objectPool;
         }
@@ -67,7 +67,7 @@ namespace TowerDeffence.Buildings
 
         private void Shoot()
         {
-            Projectile projGO = objectPool.Get(_towerSO.ProjectilePrefab);
+            Projectile projGO = objectPool.GetObject(_towerSO.ProjectilePrefab);
             projGO.transform.position = firePoint.position;
             projGO.transform.rotation = firePoint.rotation;
             projGO.onKilled += _economyManager.OnKill;

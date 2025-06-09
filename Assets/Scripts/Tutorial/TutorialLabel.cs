@@ -15,10 +15,10 @@ namespace TowerDeffence.Tutorial
         [SerializeReference, SubclassSelector] private ScreenStrategy screenStrategy;
         public static Action OnSubmitted;
 
-        private ObjectPoolWrapper<TutorialLabel> objectPool;
+        private IObjectPool<TutorialLabel> objectPool;
 
         [Inject]
-        private void Construct(ObjectPoolWrapper<TutorialLabel> objectPool)
+        private void Construct(IObjectPool<TutorialLabel> objectPool)
         {
             this.objectPool = objectPool;
         }
@@ -48,7 +48,7 @@ namespace TowerDeffence.Tutorial
         public void OnDisable()
         {
             submitButton.onClick.RemoveListener(FulfillCondition);
-            objectPool.Release(this);
+            objectPool.ReleaseObject(this);
         }
     }
 }
