@@ -6,12 +6,16 @@ using UnityEngine;
 
 namespace TowerDeffence.AI
 {
-    public abstract class AttackController : MonoBehaviour
+    public abstract class AttackController : MonoBehaviour, IEnemyState
     {
         [SerializeField] protected AttackSO attackSO;
 
         public abstract GameObject GetClosestEnemy();
 
         public abstract void DoAttack();
+
+        public abstract void Enter(StateMachineContext context);
+        public abstract void Execute(StateMachineContext context);
+        public abstract void Exit(StateMachineContext context);
     }
 }
