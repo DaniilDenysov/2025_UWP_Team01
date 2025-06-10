@@ -12,27 +12,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource attachedSource;
 
     [Header("Background")]
+    [SerializeField] private AudioSource backgroundSource;
     [SerializeField] private AudioClipSO background;
 
-    [Header("Positional Sound")]
-    [SerializeField] private AudioPlayerItem itemPrefab;
-    [SerializeField] private IObjectPool<AudioPlayerItem> audioObjectPool;
-
-
-    public delegate void AudioPlayer(AudioClipSO clipSO, Vector3 pos);
-
-    private AudioPlayer player;
-
-    [Inject]
-    private void Construct(IObjectPool<AudioPlayerItem> audioObjectPool)
-    {
-        this.audioObjectPool = audioObjectPool;
-    }
 
     private void Awake()
     {
         attachedSource.outputAudioMixerGroup = audioMixers;
-        player = PlayOneShot;
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -44,9 +30,9 @@ public class SoundManager : MonoBehaviour
 
     private void PlayBackgroudMusic(AudioClipSO clipSO)
     {
-        AudioClipSO.Apply(clipSO, attachedSource);
-        attachedSource.clip = clipSO.Clip;
-        attachedSource.Play();
+        AudioClipSO.Apply(clipSO, backgroundSource);
+        backgroundSource.clip = clipSO.Clip;
+        backgroundSource.Play();
     }
 
     public void PlayOneShot(AudioClipSO clipSO)
@@ -55,10 +41,5 @@ public class SoundManager : MonoBehaviour
         attachedSource.PlayOneShot(clipSO.Clip);
     }
 
-    private void PlayOneShot(AudioClipSO clipSO, Vector3 pos)
-    {
-        var item = audioObjectPool.GetObject(itemPrefab);
-        item.transform.position = pos;
-        item.Play(clipSO);
-    }
+    
 }
