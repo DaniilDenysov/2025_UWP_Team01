@@ -1,3 +1,4 @@
+using System;
 using TowerDeffence.Interfaces;
 using TowerDeffence.UI.Model;
 using TowerDeffence.UI.Presenter;
@@ -17,6 +18,10 @@ namespace TowerDeffence.HealthSystem
     public class HealthModel : IModel<Health>, IDamagable
     {
         [SerializeField] private Health health;
+        
+        [SerializeField, Range(0f, 1f)] float[] thresholds;
+        public Action<int> OnHealthThreshold;
+        private int thresholdsIndex = 0;
 
         public System.Action<Health> OnModelUpdated 
         { 
@@ -34,12 +39,25 @@ namespace TowerDeffence.HealthSystem
             bool isDead = health.Current - damage <= 0;
             health.Current = (int)Mathf.Clamp(health.Current - damage, 0, health.Max);
             OnModelUpdated?.Invoke(health);
+            CheckHealthThresholds();
             return isDead;
         }
 
         public uint GetCurrentHealthPoints()
         {
             return (uint)health?.Current;
+        }
+
+        private void CheckHealthThresholds()
+        {
+            float healthPercentage = (float)health.Current / health.Max;
+
+            if (thresholdsIndex < thresholds.Length && healthPercentage <= thresholds[thresholdsIndex])
+            {
+                OnHealthThreshold?.Invoke(thresholdsIndex);
+                thresholdsIndex++;
+            }
+            
         }
 
         public void UpdateModel()
@@ -50,10 +68,28 @@ namespace TowerDeffence.HealthSystem
 
     public class HealthPresenter : Presenter<HealthSystemView, HealthModel, Health>, IDamagable
     {
+        [SerializeField] BackgroundMusicChanger changer;
+
         private void Start()
         {
             model.UpdateModel();
+            model.OnHealthThreshold += HandleHpThreshold;
         }
+
+        private void OnDestroy()
+        {
+            if (model != null)
+            {
+                model.OnHealthThreshold -= HandleHpThreshold;
+            }
+        }
+
+        private void HandleHpThreshold(int index)
+        {
+            if (!changer) return;
+            changer.ChangeBackgroundMusic(index);
+        }
+
 
         public void ResetHealth()
         {

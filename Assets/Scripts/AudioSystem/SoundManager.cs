@@ -28,8 +28,9 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    private void PlayBackgroudMusic(AudioClipSO clipSO)
+    public void PlayBackgroudMusic(AudioClipSO clipSO)
     {
+        backgroundSource.Stop();
         AudioClipSO.Apply(clipSO, backgroundSource);
         backgroundSource.clip = clipSO.Clip;
         backgroundSource.Play();
