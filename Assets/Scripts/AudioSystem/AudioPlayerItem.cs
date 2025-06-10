@@ -29,7 +29,6 @@ public class AudioPlayerItem : MonoBehaviour
 
     public async void Play(AudioClipSO clipSO)
     {
-        Debug.Log("Played");
         AudioClipSO.Apply(clipSO, audioSource);
         audioSource.clip = clipSO.Clip;
         audioSource.Play();

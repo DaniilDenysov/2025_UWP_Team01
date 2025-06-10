@@ -32,7 +32,6 @@ public class SFXManager : MonoBehaviour
 
     public void PlayOneShot(AudioClipSO clipSO, Vector3 pos)
     {
-        Debug.Log("Called");
         var item = audioObjectPool.GetObject(itemPrefab);
         item.transform.position = pos;
         item.Play(clipSO);

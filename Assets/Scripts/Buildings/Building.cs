@@ -22,7 +22,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
     
     private IObjectPool<Building> objectPool;
     [SerializeField] private UnityEvent<bool> _onInteracted;
-    private CommandContainer commandContainer;
+    protected CommandContainer commandContainer;
     
     private bool _isPositionValid;
     protected bool isPreviewMode;
@@ -94,7 +94,8 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
     {
         commandContainer.ExecuteCommand(new SellBuildingCommand(this));
     }
-    
+
+
     public void SetPreviewMode(bool isPreview)
     {
         isPreviewMode = isPreview;

@@ -15,10 +15,16 @@ namespace TowerDeffence.Buildings
         [SerializeField] private TowerSO _towerSO;
         [SerializeField] private Transform firePoint;
         [SerializeField] private AudioClipSO shootSFX;
+        [SerializeField, Range(1f, 100f)] private float upgradeRate;  
+        [SerializeField, Range(1f, 100f)] private float upgradeRange;  
+        [SerializeField, Range(1f, 100f)] private float upgradeDamage;  
         private float fireCountdown = 0f;
         private Transform target;
         private IAttackStrategyHandler<EnemyMovement> strategySelector;
         private IObjectPool<Projectile> objectPool;
+        public float rate { get; set; }
+        public float damage { get; set; }
+        public float range { get; set; }
 
         [Inject]
         private void Construct(IObjectPool<Projectile> objectPool)
@@ -29,6 +35,7 @@ namespace TowerDeffence.Buildings
         private void Start()
         {
             strategySelector = new ClosestEnemy() { myPosition = transform };
+            rate = _towerSO.FireRate;
         }
 
         private void Update()
@@ -40,7 +47,7 @@ namespace TowerDeffence.Buildings
                 if (target != null && fireCountdown <= 0f)
                 {
                     Shoot();
-                    fireCountdown = 1f / _towerSO.FireRate;
+                    fireCountdown = 1f / rate;
                 }
 
                 fireCountdown -= Time.deltaTime;
@@ -84,6 +91,22 @@ namespace TowerDeffence.Buildings
         private bool CanShoot()
         {
             return !isPreviewMode;
+        }
+
+
+        public virtual void UpgradeRange()
+        {
+            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Range, upgradeRange));
+        }
+
+        public virtual void UpgradeRate()
+        {
+            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Rate, upgradeRate));
+        }
+
+        public virtual void UpgradeDamage()
+        {
+            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Damage, upgradeDamage));
         }
     }
 }
