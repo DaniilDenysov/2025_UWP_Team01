@@ -2209,6 +2209,50 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &533052867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 533052869}
+  - component: {fileID: 533052868}
+  m_Layer: 0
+  m_Name: CommandInvoker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &533052868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533052867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d80549f281d451cb831c54ce7bd06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &533052869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533052867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &563827349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5352,6 +5396,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onUndo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 533052868}
+        m_TargetAssemblyTypeName: CommandContainer, Assembly-CSharp
+        m_MethodName: Undo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRedo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 533052868}
+        m_TargetAssemblyTypeName: CommandContainer, Assembly-CSharp
+        m_MethodName: Redo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &1482018083 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1550317802602732283, guid: 4950e526fdf56438191ea050a22fe53f,
@@ -5845,6 +5919,7 @@ GameObject:
   - component: {fileID: 1718582493}
   - component: {fileID: 1718582492}
   - component: {fileID: 1718582494}
+  - component: {fileID: 1718582495}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -5872,6 +5947,7 @@ MonoBehaviour:
   - {fileID: 1718582494}
   - {fileID: 253158147}
   - {fileID: 1902178646}
+  - {fileID: 1718582495}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -5917,6 +5993,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   economyManager: {fileID: 923676825}
+--- !u!114 &1718582495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718582491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d0903fafc34526a8914f64ccbd7e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandContainer: {fileID: 533052868}
 --- !u!1001 &1779859547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9690,3 +9779,4 @@ SceneRoots:
   - {fileID: 466690887}
   - {fileID: 1452283556}
   - {fileID: 1902178645}
+  - {fileID: 533052869}

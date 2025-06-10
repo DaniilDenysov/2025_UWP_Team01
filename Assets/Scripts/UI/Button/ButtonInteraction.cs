@@ -29,7 +29,6 @@ public class ButtonInteraction : MonoBehaviour, IPointerClickHandler, IPointerEn
         soundManager.PlayOneShot(hover);
     }
 
-
     public void OnPointerExit(PointerEventData eventData)
     {
 
