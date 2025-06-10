@@ -67,7 +67,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
 
     public virtual bool Place()
     {
-        if (_economyManager.CanAfford(price))
+        if (_economyManager.CanAfford(price) && !IsBlockedByBuilding())
         {
             _economyManager.Reduce(price);
             return true;

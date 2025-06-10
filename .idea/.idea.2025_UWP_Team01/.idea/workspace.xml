@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69f215c3-aa59-4b51-b5b6-219fb9220a38" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Command/PlaceBuildingCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Command/PlaceBuildingCommand.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Tower_A.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Tower_A.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Tower_Area.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Tower_Area.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultActions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultActions.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Tower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Tower.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectPools/ObjectPoolWrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectPools/ObjectPoolWrapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/InputListener.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/InputListener.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Command/CommandContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Command/PlaceBuildingCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Input/InputListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -110,7 +113,7 @@
       <workItem from="1747829914151" duration="175000" />
       <workItem from="1747830112693" duration="1708000" />
       <workItem from="1748435074321" duration="4394000" />
-      <workItem from="1749563634248" duration="6066000" />
+      <workItem from="1749563634248" duration="7951000" />
     </task>
     <servers />
   </component>

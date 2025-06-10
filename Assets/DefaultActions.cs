@@ -44,6 +44,24 @@ public partial class @DefaultActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Undo"",
+                    ""type"": ""Button"",
+                    ""id"": ""58b61e21-6087-485a-b47e-86d966048e52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Redo"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed13c79a-0b1d-41fa-9959-d084e4025fff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,72 @@ public partial class @DefaultActions: IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""CtrlZ"",
+                    ""id"": ""1a3a8c83-1de7-4f3c-a8f4-da01de2ecc55"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Undo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""f5d531ad-1767-4bfe-aeb3-0260e1b63938"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""1d5779d1-59e7-4f30-96f4-95412ab3cc5b"",
+                    ""path"": ""<Keyboard>/#(Z)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""CtrlR"",
+                    ""id"": ""90dd3f79-3abe-448e-8189-a7118a867315"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Redo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""c777476a-2dea-4133-b2e0-1012ca04c038"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""19ae8c0d-608e-44a3-a6f5-3693e600138c"",
+                    ""path"": ""<Keyboard>/#(R)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -122,6 +206,8 @@ public partial class @DefaultActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        m_Player_Undo = m_Player.FindAction("Undo", throwIfNotFound: true);
+        m_Player_Redo = m_Player.FindAction("Redo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +271,16 @@ public partial class @DefaultActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Zoom;
+    private readonly InputAction m_Player_Undo;
+    private readonly InputAction m_Player_Redo;
     public struct PlayerActions
     {
         private @DefaultActions m_Wrapper;
         public PlayerActions(@DefaultActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+        public InputAction @Undo => m_Wrapper.m_Player_Undo;
+        public InputAction @Redo => m_Wrapper.m_Player_Redo;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +296,12 @@ public partial class @DefaultActions: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @Undo.started += instance.OnUndo;
+            @Undo.performed += instance.OnUndo;
+            @Undo.canceled += instance.OnUndo;
+            @Redo.started += instance.OnRedo;
+            @Redo.performed += instance.OnRedo;
+            @Redo.canceled += instance.OnRedo;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -216,6 +312,12 @@ public partial class @DefaultActions: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @Undo.started -= instance.OnUndo;
+            @Undo.performed -= instance.OnUndo;
+            @Undo.canceled -= instance.OnUndo;
+            @Redo.started -= instance.OnRedo;
+            @Redo.performed -= instance.OnRedo;
+            @Redo.canceled -= instance.OnRedo;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -237,5 +339,7 @@ public partial class @DefaultActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnUndo(InputAction.CallbackContext context);
+        void OnRedo(InputAction.CallbackContext context);
     }
 }
