@@ -55,6 +55,7 @@ namespace TowerDeffence.AI
         public static Action OnLastWaveFinished;
         public static Action<string, float> OnNewWaveStarted;
         [SerializeField] private Transform target;
+        [SerializeField] private AudioClipSO WaveHornSFX;
         private Transform spawnPoint
         {
             get => spawnpoints[UnityEngine.Random.Range(0, spawnpoints.Length)];
@@ -98,6 +99,7 @@ namespace TowerDeffence.AI
                 int totalEnemyCount = (int)waves[i].Enemies.Sum((w) => w.Amount);
                 float waveDuration = waves[i].Duration / totalEnemyCount;
                 OnNewWaveStarted?.Invoke(waves[i].Name, waves[i].Duration);
+                SFXManager.Instance.PlayOneShot(WaveHornSFX, transform.position);
                 if (i+1 < waves.Count)
                 {
                     ChangeModel(waves[i + 1]);

@@ -14,6 +14,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ba03da5e76840450d87f0c4549f9775a,
         type: 2}
+    - target: {fileID: -6023971894581289496, guid: ad5cf645e680d45bf89df59416b0d51a,
+        type: 3}
+      propertyPath: shootSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 91516095ea4c3884492b9c38943c8308,
+        type: 2}
     - target: {fileID: 5948405127881944767, guid: ad5cf645e680d45bf89df59416b0d51a,
         type: 3}
       propertyPath: m_LocalPosition.x

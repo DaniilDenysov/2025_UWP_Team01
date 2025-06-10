@@ -14,6 +14,7 @@ namespace TowerDeffence.Buildings
     {
         [SerializeField] private TowerSO _towerSO;
         [SerializeField] private Transform firePoint;
+        [SerializeField] private AudioClipSO shootSFX;
         private float fireCountdown = 0f;
         private Transform target;
         private IAttackStrategyHandler<EnemyMovement> strategySelector;
@@ -73,6 +74,7 @@ namespace TowerDeffence.Buildings
             projGO.transform.rotation = firePoint.rotation;
             projGO.onKilled += _economyManager.OnKill;
 
+            SFXManager.Instance.PlayOneShot(shootSFX, transform.position);
             if (projGO != null)
             {
                 projGO.Seek(target);

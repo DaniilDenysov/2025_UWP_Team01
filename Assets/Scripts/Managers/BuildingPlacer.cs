@@ -12,11 +12,13 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private LayerMask placementLayer;
     [SerializeField] private LayerMask buildingLayer;
     [SerializeField] private Grid grid;
+    [SerializeField] private AudioClipSO buildingSFX;
     private Building currentPreview;
     private Building prefabToPlace;
     private bool _isValidPosition;
     public Action<Vector3, bool> OnUpdatePlacement;
     public Action OnEndedPlacement;
+    private Vector3 placePos;
 
     private void Awake()
     {
@@ -36,7 +38,8 @@ public class BuildingPlacer : MonoBehaviour
         if (OnUpdatePlacement == null) return;
         
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        Vector3 placePos;
+        
+
         bool isValidPosition = true;
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, ~buildingLayer))
@@ -55,12 +58,14 @@ public class BuildingPlacer : MonoBehaviour
         }
         
         OnUpdatePlacement.Invoke(placePos, isValidPosition);
+        
     }
 
     public void FinalizePlacement()
     {
         if (OnEndedPlacement == null) return;
         OnEndedPlacement?.Invoke();
+        SFXManager.Instance.PlayOneShot(buildingSFX, placePos);
     }
     
     public bool IsLayerInMask(LayerMask mask, int layerId)

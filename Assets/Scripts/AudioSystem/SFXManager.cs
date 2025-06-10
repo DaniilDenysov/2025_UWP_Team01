@@ -5,13 +5,23 @@ using Zenject;
 
 public class SFXManager : MonoBehaviour
 {
+    public static SFXManager Instance { get; private set; }
+
     [Header("Positional Sound")]
     [SerializeField] private AudioPlayerItem itemPrefab;
     private IObjectPool<AudioPlayerItem> audioObjectPool;
 
-    public delegate void AudioPlayer(AudioClipSO clipSO, Vector3 pos);
-
-    private AudioPlayer player;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     [Inject]
     private void Construct(IObjectPool<AudioPlayerItem> audioObjectPool)
@@ -19,13 +29,10 @@ public class SFXManager : MonoBehaviour
         this.audioObjectPool = audioObjectPool;
     }
 
-    private void Awake()
-    {
-        player = PlayOneShot;
-    }
 
-    private void PlayOneShot(AudioClipSO clipSO, Vector3 pos)
+    public void PlayOneShot(AudioClipSO clipSO, Vector3 pos)
     {
+        Debug.Log("Called");
         var item = audioObjectPool.GetObject(itemPrefab);
         item.transform.position = pos;
         item.Play(clipSO);
