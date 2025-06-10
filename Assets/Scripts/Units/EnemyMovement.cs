@@ -60,7 +60,7 @@ namespace TowerDeffence.AI
             {
                 MoveTo(context.Owner.Target.position);
                 float distance = Vector3.Distance(transform.position, context.Owner.Target.position);
-                if (distance <= context.Owner.AttackData.Range)
+                if (distance <= context.Owner.AttackController.Range)
                 {
                     context.StateMachine.ChangeState(context.AttackState);
                 }

@@ -56,5 +56,20 @@ namespace TowerDeffence.AI
                            .OrderBy(b => Vector3.Distance(b.transform.position, transform.position))
                            .FirstOrDefault()?.gameObject;
         }
+
+        public override void Enter(StateMachineContext context)
+        {
+            
+        }
+
+        public override void Execute(StateMachineContext context)
+        {
+            
+        }
+
+        public override void Exit(StateMachineContext context)
+        {
+            
+        }
     }
 }

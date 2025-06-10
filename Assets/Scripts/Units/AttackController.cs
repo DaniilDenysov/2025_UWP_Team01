@@ -9,7 +9,9 @@ namespace TowerDeffence.AI
     public abstract class AttackController : MonoBehaviour, IEnemyState
     {
         [SerializeField] protected AttackSO attackSO;
-
+        public uint Damage { get => attackSO.Damage; }
+        public uint Range { get => attackSO.Range; }
+        public uint Rate { get => attackSO.Rate; }
         public abstract GameObject GetClosestEnemy();
 
         public abstract void DoAttack();

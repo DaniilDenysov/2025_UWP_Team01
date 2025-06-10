@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private HealthPresenter healthPresenter;
 
+    public AttackController AttackController { get => attackController; }
+
     public Transform Target { get; set; }
 
     private void Awake()
