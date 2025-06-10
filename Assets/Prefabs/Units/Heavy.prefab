@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689cab2d5a931674ca04b037ffe05fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSO: {fileID: 11400000, guid: 598ce8bfc300e534c842e0ee1dbe1d32, type: 2}
+  attackSO: {fileID: 11400000, guid: c4493a7b142f16e449f668256ef98a49, type: 2}
 --- !u!1001 &5822509175210848380
 PrefabInstance:
   m_ObjectHideFlags: 0
