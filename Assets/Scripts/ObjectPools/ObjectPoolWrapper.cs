@@ -51,9 +51,10 @@ namespace TowerDeffence.ObjectPools
                     var newPool = new ObjectPool<T>(
                         createFunc: () =>
                         {
-                            var obj = Container.InstantiatePrefab(poolObj.Prefab.gameObject);
-                          // Container.Inject(obj);
-                            return obj.GetComponent<T>();
+                            // var obj = Container.InstantiatePrefab(poolObj.Prefab.gameObject);
+                            // var obj = poolObj.Prefab.gameObject);
+                            var obj = Container.InstantiatePrefabForComponent<T>(poolObj.Prefab.gameObject);
+                            return obj;
                         },
                         actionOnGet: OnTakenFromPool,
                         actionOnRelease: OnReturnedToPool,

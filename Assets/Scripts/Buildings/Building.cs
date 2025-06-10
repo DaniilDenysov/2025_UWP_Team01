@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TowerDeffence.AI;
 using TowerDeffence.Interfaces;
+using TowerDeffence.ObjectPools;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,16 +19,26 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
     private Vector3 boundsExtents;
     protected EconomyManager _economyManager;
     
+    private IObjectPool<Building> objectPool;
+    [SerializeField] private UnityEvent<bool> _onInteracted;
+    
     private bool _isPositionValid;
     protected bool isPreviewMode;
 
     private BuildingPlacer _buildingPlacer;
+    private bool isSelected = false;
     
     private void Awake()
     {
         previewCollider = GetComponentInChildren<Collider>();
         boundsExtents = previewCollider.bounds.extents;
         renderers = GetComponentsInChildren<Renderer>();
+    }
+
+    [Inject]
+    private void Construct(IObjectPool<Building> objectPool)
+    {
+        this.objectPool = objectPool;
     }
 
     [Inject]
@@ -49,6 +60,8 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
 
     private void OnDisable()
     {
+        isSelected = false;        
+        _onInteracted.Invoke(isSelected);
         AvailableBuidings.Remove(this);
     }
 
@@ -65,7 +78,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
 
     public virtual void Remove()
     {
-        Destroy(this);
+        objectPool.ReleaseObject(this);
     }
 
     public virtual void Sell()
@@ -213,5 +226,11 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
     public Building Copy()
     {
         return (Building) MemberwiseClone();
+    }
+        
+    void OnMouseDown()
+    {
+        isSelected = !isSelected;
+        _onInteracted.Invoke(isSelected);
     }
 }
