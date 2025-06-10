@@ -430,6 +430,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 7744534042529961969, guid: 4950e526fdf56438191ea050a22fe53f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1639410948, guid: c5f5116afc8b4934aacb81a0e106ed1d,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -869,6 +875,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerArea
       objectReference: {fileID: 0}
+    - target: {fileID: 7744534042529961969, guid: 4950e526fdf56438191ea050a22fe53f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1639410948, guid: c5f5116afc8b4934aacb81a0e106ed1d,
+        type: 3}
     - target: {fileID: 8113695548144095305, guid: 4950e526fdf56438191ea050a22fe53f,
         type: 3}
       propertyPath: m_text

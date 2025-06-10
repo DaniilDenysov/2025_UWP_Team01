@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfd654158b0dd5499782d994588508c, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  audioMixer: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: b3169415a09f816448a04f93897452ee, type: 3}
+  audioMixer: {fileID: 24300002, guid: b2bf006027addc84881f9853a8306699, type: 2}
   volume: 1
-  spatialBlend: 0
+  spatialBlend: 1
   playOnAwake: 0
   loop: 0
   pitch: 1
