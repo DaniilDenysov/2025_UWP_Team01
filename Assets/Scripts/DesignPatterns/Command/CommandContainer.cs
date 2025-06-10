@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class CommandContainer : MonoInstaller
+public class CommandContainer : MonoBehaviour
 {
-    [SerializeField] private CommandContainer commandContainer;
-    
     private Stack<ICommand> undoStack = new Stack<ICommand>();
     private Stack<ICommand> redoStack = new Stack<ICommand>();
 
@@ -29,10 +27,5 @@ public class CommandContainer : MonoInstaller
     public void Redo()
     {
         redoStack.Pop().Execute();
-    }
-
-    public override void InstallBindings()
-    {
-        Container.Bind<CommandContainer>().To<CommandContainer>().FromInstance(commandContainer).AsSingle().NonLazy();
     }
 }
