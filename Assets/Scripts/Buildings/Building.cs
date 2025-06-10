@@ -84,9 +84,14 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
         return false;
     }
 
-    public virtual void Remove()
+    public virtual void Withdraw()
     {
         _economyManager.Add(price);
+    }
+
+    public virtual void Remove()
+    {
+        Withdraw();
         objectPool.ReleaseObject(this);
     }
 

@@ -719,6 +719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: -6023971894581289496}
@@ -729,12 +734,22 @@ PrefabInstance:
       objectReference: {fileID: 156926965226149020}
     - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 5948405127881978527}
+    - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
@@ -755,6 +770,11 @@ PrefabInstance:
     - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.UI.Selectable, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.UI.Selectable, UnityEngine.UI
       objectReference: {fileID: 0}
     - target: {fileID: 4363033453831517988, guid: 63b30cc1acbd40842ab8096c19a14d36,
@@ -1431,10 +1451,10 @@ MonoBehaviour:
   upgradeRange: 10
   upgradeDamage: 10
   materialsToUpgread:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: ee90f878377271b4fbbf915249f24476, type: 2}
+  - {fileID: 2100000, guid: 9186a6a8fc39f3449adde864b5e75cdb, type: 2}
+  - {fileID: 2100000, guid: b0dec1b789735944fa409fed6ebdd578, type: 2}
+  - {fileID: 2100000, guid: 9450f361659577b43bf9b57ea60ab453, type: 2}
 --- !u!65 &2179264493810015923
 BoxCollider:
   m_ObjectHideFlags: 0

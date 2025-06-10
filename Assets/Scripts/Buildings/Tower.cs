@@ -55,6 +55,11 @@ namespace TowerDeffence.Buildings
             }
         }
 
+        public override bool Place()
+        {
+            return base.Place();
+        }
+
         public void SetStrategySelector(IAttackStrategyHandler<EnemyMovement> strategySelector)
         {
             this.strategySelector = strategySelector;

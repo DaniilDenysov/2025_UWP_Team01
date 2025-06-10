@@ -40,6 +40,7 @@ public class UpgradeCommand : ICommand
             renderer.SetMaterials(new List<Material>() { materials[index] });
             
         }
+        building.Place();
         Debug.Log("Upgreaded");
         return true;
     }
@@ -63,6 +64,7 @@ public class UpgradeCommand : ICommand
             index--;
             renderer.SetMaterials(new List<Material>() { materials[index] });
         }
+        building.Withdraw();
         Debug.Log("Deupgreaded");
     }
 }
