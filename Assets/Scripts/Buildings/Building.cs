@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DesignPatterns.Singleton.Command;
 using TowerDeffence.AI;
 using TowerDeffence.Interfaces;
 using TowerDeffence.ObjectPools;
@@ -21,6 +22,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
     
     private IObjectPool<Building> objectPool;
     [SerializeField] private UnityEvent<bool> _onInteracted;
+    private CommandContainer commandContainer;
     
     private bool _isPositionValid;
     protected bool isPreviewMode;
@@ -33,6 +35,12 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
         previewCollider = GetComponentInChildren<Collider>();
         boundsExtents = previewCollider.bounds.extents;
         renderers = GetComponentsInChildren<Renderer>();
+    }
+    
+    [Inject]
+    private void Construct(CommandContainer commandContainer)
+    {
+        this.commandContainer = commandContainer;
     }
 
     [Inject]
@@ -78,15 +86,14 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
 
     public virtual void Remove()
     {
+        _economyManager.Add(price);
         objectPool.ReleaseObject(this);
     }
 
     public virtual void Sell()
     {
-        _economyManager.Add(price);
-        Remove();
+        commandContainer.ExecuteCommand(new SellBuildingCommand(this));
     }
-
     
     public void SetPreviewMode(bool isPreview)
     {
@@ -198,7 +205,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
         }
         
         SetPreviewMode(false);
-        Place();
+        commandContainer.ExecuteCommand(new PlaceBuildingCommand(this));
         UnsubscribeToPlacing();
     }
 

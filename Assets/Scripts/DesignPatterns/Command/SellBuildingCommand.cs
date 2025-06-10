@@ -1,23 +1,24 @@
 namespace DesignPatterns.Singleton.Command
 {
-    public class PlaceBuildingCommand : ICommand
+    public class SellBuildingCommand : ICommand
     {
         private Building building;
 
-        public PlaceBuildingCommand(Building building)
+        public SellBuildingCommand(Building building)
         {
             this.building = building;
         }
         
         public bool Execute()
         {
-            building.gameObject.SetActive(true);
-            return building.Place();
+            building.Remove();
+            return true;
         }
 
         public void Undo()
         {
-            building.Remove();
+            building.gameObject.SetActive(true);
+            building.Place();
         }
     }
 }
