@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69f215c3-aa59-4b51-b5b6-219fb9220a38" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Command/PlaceBuildingCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/DesignPatterns/Command/PlaceBuildingCommand.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2025_UWP_Team01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DefaultActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultActions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DefaultActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultActions.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/InputListener.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/InputListener.cs" afterDir="false" />
-    </list>
+    <list default="true" id="69f215c3-aa59-4b51-b5b6-219fb9220a38" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +104,7 @@
       <workItem from="1747829914151" duration="175000" />
       <workItem from="1747830112693" duration="1708000" />
       <workItem from="1748435074321" duration="4394000" />
-      <workItem from="1749563634248" duration="7951000" />
+      <workItem from="1749563634248" duration="8292000" />
     </task>
     <servers />
   </component>

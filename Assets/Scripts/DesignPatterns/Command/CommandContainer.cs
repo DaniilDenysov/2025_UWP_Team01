@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class CommandContainer : MonoBehaviour
+public class CommandContainer : MonoInstaller
 {
     private Stack<ICommand> undoStack = new Stack<ICommand>();
     private Stack<ICommand> redoStack = new Stack<ICommand>();
