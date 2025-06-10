@@ -8,12 +8,15 @@ public class UpgradeCommand : ICommand
     private Tower building;
     private Updatable update;
     private float value;
+    private List<Material> materials;
+    private static int index = 0;
 
-    public UpgradeCommand(Tower building, Updatable update, float value)
+    public UpgradeCommand(Tower building, Updatable update, float value, List<Material> materials)
     {
         this.building = building;
         this.update = update;
         this.value = value;
+        this.materials = materials;
     }
     public bool Execute()
     {
@@ -30,6 +33,12 @@ public class UpgradeCommand : ICommand
                 break;
             default:
                 return false;
+        }
+        if (building.gameObject.TryGetComponent<MeshRenderer>(out var renderer))
+        {
+            index++;
+            renderer.SetMaterials(new List<Material>() { materials[index] });
+            
         }
         Debug.Log("Upgreaded");
         return true;
@@ -48,6 +57,11 @@ public class UpgradeCommand : ICommand
             case Updatable.Damage:
                 building.damage -= value;
                 break;
+        }
+        if (building.gameObject.TryGetComponent<MeshRenderer>(out var renderer))
+        {
+            index--;
+            renderer.SetMaterials(new List<Material>() { materials[index] });
         }
         Debug.Log("Deupgreaded");
     }

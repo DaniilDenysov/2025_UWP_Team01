@@ -17,7 +17,8 @@ namespace TowerDeffence.Buildings
         [SerializeField] private AudioClipSO shootSFX;
         [SerializeField, Range(1f, 100f)] private float upgradeRate;  
         [SerializeField, Range(1f, 100f)] private float upgradeRange;  
-        [SerializeField, Range(1f, 100f)] private float upgradeDamage;  
+        [SerializeField, Range(1f, 100f)] private float upgradeDamage;
+        [SerializeField] List<Material> materialsToUpgread;
         private float fireCountdown = 0f;
         private Transform target;
         private IAttackStrategyHandler<EnemyMovement> strategySelector;
@@ -96,17 +97,17 @@ namespace TowerDeffence.Buildings
 
         public virtual void UpgradeRange()
         {
-            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Range, upgradeRange));
+            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Range, upgradeRange, materialsToUpgread));
         }
 
         public virtual void UpgradeRate()
         {
-            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Rate, upgradeRate));
+            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Rate, upgradeRate, materialsToUpgread));
         }
 
         public virtual void UpgradeDamage()
         {
-            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Damage, upgradeDamage));
+            commandContainer.ExecuteCommand(new UpgradeCommand(this, Updatable.Damage, upgradeDamage, materialsToUpgread));
         }
     }
 }

@@ -1430,9 +1430,11 @@ MonoBehaviour:
   upgradeRate: 10
   upgradeRange: 10
   upgradeDamage: 10
-  rate: 0
-  damage: 0
-  range: 0
+  materialsToUpgread:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &2179264493810015923
 BoxCollider:
   m_ObjectHideFlags: 0
