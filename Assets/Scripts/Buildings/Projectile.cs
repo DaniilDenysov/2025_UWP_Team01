@@ -15,8 +15,8 @@ namespace TowerDeffence.Buildings
         public float force = 50000f;
         private Rigidbody rb;
         public Action onKilled;
-        private IObjectPool<EnemyMovement> enemyObjectPool;
-        private IObjectPool<Projectile> projectileObjectPool;
+        protected IObjectPool<EnemyMovement> enemyObjectPool;
+        protected IObjectPool<Projectile> projectileObjectPool;
         private Quaternion originalRotation;
 
 
@@ -54,9 +54,6 @@ namespace TowerDeffence.Buildings
             }
         }
 
-
-
-
         public void Seek(Transform target)
         {
             if (target != null)
@@ -68,7 +65,7 @@ namespace TowerDeffence.Buildings
             }
         }
 
-        private void OnCollisionEnter(Collision other)
+        protected virtual void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent(out EnemyMovement enemyMovement))
             {
