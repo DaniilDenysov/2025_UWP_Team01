@@ -1750,6 +1750,134 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 390713398}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &415070511
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2059587629}
+    m_Modifications:
+    - target: {fileID: 3362023816511333374, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: order
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362023816511333374, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: description
+      value: Press the upgrade button on Tower UI to upgrade it
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911529624889797806, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialAnchor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 653
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6e28b9c87f5005439c13a158346d42a, type: 3}
 --- !u!1001 &416059421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1766,7 +1894,7 @@ PrefabInstance:
     - target: {fileID: 3362023816511333374, guid: e6e28b9c87f5005439c13a158346d42a,
         type: 3}
       propertyPath: description
-      value: Upgrade tower
+      value: Drag and drop the tower to place it
       objectReference: {fileID: 0}
     - target: {fileID: 5911529624889797806, guid: e6e28b9c87f5005439c13a158346d42a,
         type: 3}
@@ -2333,6 +2461,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a06466c05352b04fba5f9dd885568f1, type: 3}
+--- !u!224 &563645027 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8468316692600751993, guid: e6e28b9c87f5005439c13a158346d42a,
+    type: 3}
+  m_PrefabInstance: {fileID: 415070511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &563827349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7329,6 +7463,7 @@ RectTransform:
   - {fileID: 207754403}
   - {fileID: 416059422}
   - {fileID: 1178126396}
+  - {fileID: 563645027}
   m_Father: {fileID: 1883995031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
