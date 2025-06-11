@@ -7646,6 +7646,7 @@ MonoBehaviour:
   OnTowerPlaced:
     m_PersistentCalls:
       m_Calls: []
+  IsTarget: 1
   _onInteracted:
     m_PersistentCalls:
       m_Calls: []

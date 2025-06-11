@@ -12,6 +12,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
 {
     [SerializeField] private int price;
     [SerializeField] public UnityEvent OnTowerPlaced;
+    [SerializeField] public bool IsTarget;
 
     public static List<Building> AvailableBuidings = new List<Building>();
     private Renderer[] renderers;

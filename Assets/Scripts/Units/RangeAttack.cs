@@ -15,9 +15,7 @@ namespace TowerDeffence.AI
             if (Building.AvailableBuidings == null || !Building.AvailableBuidings.Any())
                 return null;
 
-            return Building.AvailableBuidings
-                           .OrderBy(b => Vector3.Distance(b.transform.position, transform.position))
-                           .FirstOrDefault()?.gameObject;
+            return Building.AvailableBuidings.FirstOrDefault(b => b.IsTarget)?.gameObject;
         }
 
         public override void DoAttack()
