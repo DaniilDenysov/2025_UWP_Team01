@@ -994,6 +994,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  destructionEffectPrefab: {fileID: 6386038117686170841, guid: a1aa72be32fc3b247a6077584256554c,
+    type: 3}
   _onInteracted:
     m_PersistentCalls:
       m_Calls:
