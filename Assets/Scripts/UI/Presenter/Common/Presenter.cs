@@ -7,10 +7,16 @@ using UnityEngine;
 
 namespace TowerDeffence.UI.Presenter
 {
-    public abstract class Presenter<V, M, T> : MonoBehaviour where M : IModel<T> where V : View<T>
+    public abstract class Presenter<V, M, T> : MonoBehaviour where M : IModel<T>, new() where V : View<T>
     {
         [SerializeField] protected M model;
         [SerializeField] protected V view;
+
+        protected virtual void Awake()
+        {
+            model = new M();
+            view = GetComponent<V>();
+        }
 
         public Action<T> OnModelUpdatedAction
         {

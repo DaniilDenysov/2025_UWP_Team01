@@ -11,66 +11,74 @@ namespace TowerDeffence.AI
     {
         private static HashSet<EnemyMovement> avaialableEnemies = new HashSet<EnemyMovement>();
         public static IReadOnlyCollection<EnemyMovement> AvailableEnemies => avaialableEnemies;
-        [SerializeField] private NavMeshAgent agent;
+        private NavMeshAgent agent;
+        private Animator animator;
 
-        private void OnEnable()
-        {
-            avaialableEnemies.Add(this);
+        public void Initialize()
+        { 
+            agent = GetComponent<NavMeshAgent>(); animator = GetComponent<Animator>();
+        }
+        private void OnEnable() 
+        { 
+            avaialableEnemies.Add(this); 
+        }
+        private void OnDisable() 
+        { 
+            avaialableEnemies.Remove(this); 
+        }
+        public void StopAgent() 
+        { 
+            if (agent != null && agent.isActiveAndEnabled) agent.isStopped = true; 
+        }
+        public void StartAgent() 
+        { 
+            if (agent != null && agent.isActiveAndEnabled) agent.isStopped = false; 
+        }
+        public void MoveTo(Vector3 position) 
+        { 
+            if (agent != null && agent.isActiveAndEnabled) agent.SetDestination(position); 
+        }
+        public void Warp(Vector3 position) 
+        { 
+            if (agent != null && agent.isActiveAndEnabled) agent.Warp(position);
         }
 
-        private void OnDisable()
-        {
-            avaialableEnemies.Remove(this);
-        }
-
-        private void OnDestroy()
-        {
-            avaialableEnemies.Remove(this);
-        }
-
-        public void StopAgent()
-        {
-            agent.isStopped = true;
-        }
-
-        public void StartAgent()
-        {
-            agent.isStopped = false;
-        }
-
-        public void Warp(Vector3 position)
-        {
-            agent.Warp(position);
-        }
-
-        public void MoveTo(Vector3 position)
-        {
-            agent.SetDestination(position);
-        }
-        
         public void Enter(StateMachineContext context)
         {
-            context.Animator.SetBool("IsMoving", true);
             StartAgent();
+            if (animator != null) animator.SetBool("IsMoving", true);
         }
 
         public void Execute(StateMachineContext context)
         {
-            if(context.Owner.Target != null)
+            var target = context.Owner.currentTarget;
+
+            if (target != null)
             {
-                MoveTo(context.Owner.Target.position);
-                float distance = Vector3.Distance(transform.position, context.Owner.Target.position);
-                if (distance <= context.Owner.AttackController.Range)
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+
+                if (distance > context.Owner.AttackData.Range)
                 {
-                    context.StateMachine.ChangeState(context.AttackState);
+                    MoveTo(target.transform.position);
+                    if (animator != null) animator.SetBool("IsMoving", true);
                 }
+                else
+                {
+                    StopAgent();
+                    if (animator != null) animator.SetBool("IsMoving", false);
+                }
+            }
+            else
+            {
+                StopAgent();
+                if (animator != null) animator.SetBool("IsMoving", false);
             }
         }
 
         public void Exit(StateMachineContext context)
         {
-            context.Animator.SetBool("IsMoving", false);
             StopAgent();
+            if (animator != null) animator.SetBool("IsMoving", false);
         }
     }
 }

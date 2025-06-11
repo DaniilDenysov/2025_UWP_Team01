@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7749283898425264136}
   - component: {fileID: 2339247139474210449}
   - component: {fileID: 4979149690315470697}
+  - component: {fileID: 2292642385020953981}
+  - component: {fileID: 4278592027487349634}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Enemy
@@ -93,6 +95,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2339247139474210449}
+--- !u!114 &2292642385020953981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314926135517977968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789719f34f85c984fb2c51634ca8061c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4278592027487349634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314926135517977968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d042740b02b2a584588cda842c16d529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model:
+    health:
+      Current: 0
+      Max: 0
+    thresholds: []
+  view: {fileID: 0}
+  changer: {fileID: 0}
 --- !u!1001 &3600555107632422658
 PrefabInstance:
   m_ObjectHideFlags: 0

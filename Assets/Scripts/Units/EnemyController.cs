@@ -6,23 +6,20 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 using TowerDeffence.HealthSystem;
+using TowerDeffence.Interfaces;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamagable
 {
     public EnemyStateMachine StateMachine { get; private set; }
     public StateMachineContext Context { get; private set; }
+    public AttackSO AttackData => attackController.attackSO;
+    public GameObject currentTarget { get; private set; }
 
     private EnemyMovement movementComponent;
     private AttackController attackController;
-    private IEnemyState idleState;
     private IEnemyState dieState;
-
     private Animator animator;
     private HealthPresenter healthPresenter;
-
-    public AttackController AttackController { get => attackController; }
-
-    public Transform Target { get; set; }
 
     private void Awake()
     {
@@ -30,41 +27,88 @@ public class EnemyController : MonoBehaviour
         healthPresenter = GetComponent<HealthPresenter>();
         movementComponent = GetComponent<EnemyMovement>();
         attackController = GetComponent<AttackController>();
+        movementComponent.Initialize();
 
         dieState = new EnemyDieState();
-
         StateMachine = new EnemyStateMachine();
         Context = new StateMachineContext(StateMachine, animator, this, movementComponent, attackController, dieState);
+        StateMachine.SetContext(Context);
     }
 
     private void Start()
     {
-        StateMachine.Initialize(idleState);
+        StateMachine.Initialize(movementComponent);
     }
 
     private void Update()
     {
+        if (IsDead()) return;
+
+        DetermineState();
+
         StateMachine.CurrentState?.Execute(Context);
     }
 
-    public void DoDamage(uint damageAmount)
+    private void DetermineState()
     {
-        if (healthPresenter.GetCurrentHealthPoints() <= 0) return;
+        if (currentTarget == null)
+            currentTarget = attackController.GetClosestTarget();
 
+            if (StateMachine.CurrentState != movementComponent)
+            {
+                StateMachine.ChangeState(movementComponent);
+                return;
+            }
+            
+
+        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.transform.position);
+
+        if (distanceToTarget <= AttackData.Range)
+        {
+            if (StateMachine.CurrentState != attackController)
+            {
+                Context.StateMachine.ChangeState(Context.AttackState);
+            }
+        }
+        else
+        {
+            if (StateMachine.CurrentState != movementComponent)
+            {
+                Context.StateMachine.ChangeState(Context.MovementState);
+            }
+        }
+    }
+
+    public void Warp(Vector3 position)
+    {
+        movementComponent.Warp(position);
+    }
+
+    public bool DoDamage(uint damageAmount)
+    {
+        if (IsDead()) return true;
         bool isNowDead = healthPresenter.DoDamage(damageAmount);
         if (isNowDead)
         {
             StateMachine.ChangeState(dieState);
         }
+        return isNowDead;
     }
 
-    public bool IsDead(uint damageAmount)
+    public uint GetCurrentHealthPoints()
     {
-        return healthPresenter.GetCurrentHealthPoints() <= damageAmount;
+        return healthPresenter.GetCurrentHealthPoints();
+    }
+
+    public bool IsDead()
+    {
+        if (healthPresenter == null) return true;
+        return healthPresenter.GetCurrentHealthPoints() <= 0;
     }
 
     public IEnumerator DestroyAfterAnimation(Animator animator, string animationStateName)
     {
+        yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         Destroy(gameObject);
     }

@@ -120,7 +120,7 @@ namespace TowerDeffence.AI
                     //TODO: [DD] refacctor to pool
                     EnemyMovement instance = unitObjectPool.GetObject(waveEnemy.EnemyData.Prefab);
                     instance.StopAgent();
-                    instance.Warp(spawnPoint.position);
+                    instance.GetComponent<EnemyController>().Warp(spawnPoint.position);
                     instance.transform.rotation = Quaternion.identity;
                     instance.StartAgent();
                     instance.MoveTo(target.position);

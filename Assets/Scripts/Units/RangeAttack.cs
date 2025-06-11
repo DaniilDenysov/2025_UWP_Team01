@@ -8,46 +8,9 @@ namespace TowerDeffence.AI
 {
     public class RangeAttack : AttackController
     {
-        private GameObject target;
+        private StateMachineContext context;
 
-        private IEnumerator Start()
-        {
-            while (true)
-            {
-                DoAttack();
-                yield return new WaitForSeconds(attackSO.Rate);
-            }
-        }
-
-        public override void DoAttack()
-        {
-            if (target == null || target != null && !target.activeInHierarchy)
-            {
-                var enemy = GetClosestEnemy();
-                if (enemy == null)
-                {
-                    DebugUtility.PrintLine("No enemies found!");
-                    return;
-                }
-                if (Vector3.Distance(enemy.transform.position, transform.position) > attackSO.Range) return;
-                target = enemy;
-                if (enemy.TryGetComponent(out IDamagable damagable))
-                {
-                    //TODO: [DD] add more complex logic with launching projectile
-                    damagable.DoDamage(attackSO.Damage);
-                }
-            }
-            else
-            {
-                if (target.TryGetComponent(out IDamagable damagable))
-                {
-                    //TODO: [DD] add more complex logic with launching projectile
-                    damagable.DoDamage(attackSO.Damage);
-                }
-            }
-        }
-
-        public override GameObject GetClosestEnemy()
+        public override GameObject GetClosestTarget()
         {
             if (Building.AvailableBuidings == null || !Building.AvailableBuidings.Any())
                 return null;
@@ -57,19 +20,34 @@ namespace TowerDeffence.AI
                            .FirstOrDefault()?.gameObject;
         }
 
+        public override void DoAttack()
+        {
+            var targetTransform = context.Owner.currentTarget;
+            if (targetTransform == null) return;
+
+            Debug.Log($"[{name}] Attacking {targetTransform.name} with a ranged attack!");
+
+            if (targetTransform.TryGetComponent(out IDamagable damagable))
+            {
+                damagable.DoDamage(attackSO.Damage);
+            }
+        }
+
         public override void Enter(StateMachineContext context)
         {
-            
+            base.Enter(context);
+            this.context = context;
         }
 
         public override void Execute(StateMachineContext context)
         {
-            
+            base.Execute(context);
         }
 
         public override void Exit(StateMachineContext context)
         {
-            
+            base.Exit(context);
+            this.context = null;
         }
     }
 }

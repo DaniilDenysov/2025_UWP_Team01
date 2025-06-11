@@ -8,16 +8,33 @@ namespace TowerDeffence.AI
 {
     public abstract class AttackController : MonoBehaviour, IEnemyState
     {
-        [SerializeField] protected AttackSO attackSO;
-        public uint Damage { get => attackSO.Damage; }
-        public uint Range { get => attackSO.Range; }
-        public uint Rate { get => attackSO.Rate; }
-        public abstract GameObject GetClosestEnemy();
+        [SerializeField] public AttackSO attackSO;
+        private float lastAttackTime = 0;
 
+        public abstract GameObject GetClosestTarget();
         public abstract void DoAttack();
 
-        public abstract void Enter(StateMachineContext context);
-        public abstract void Execute(StateMachineContext context);
-        public abstract void Exit(StateMachineContext context);
+        public virtual void Enter(StateMachineContext context)
+        {
+            context.Owner.GetComponent<EnemyMovement>().StopAgent();
+        }
+
+        public virtual void Execute(StateMachineContext context)
+        {
+            if (context.Owner.currentTarget == null) return;
+
+            transform.LookAt(context.Owner.currentTarget.transform);
+
+            if (Time.time > lastAttackTime + (1f / attackSO.Rate))
+            {
+                context.Animator.SetTrigger("Attack");
+                DoAttack();
+                lastAttackTime = Time.time;
+            }
+        }
+
+        public virtual void Exit(StateMachineContext context)
+        {
+        }
     }
 }

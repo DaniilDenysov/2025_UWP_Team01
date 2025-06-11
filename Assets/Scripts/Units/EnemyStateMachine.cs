@@ -7,19 +7,29 @@ public class EnemyStateMachine
 {
     public IEnemyState CurrentState { get; private set; }
     public event Action<IEnemyState> OnStateChanged;
+    private StateMachineContext context; 
+    public void SetContext(StateMachineContext context)
+    {
+        this.context = context;
+    }
 
     public void Initialize(IEnemyState startingState)
     {
         CurrentState = startingState;
-        CurrentState?.Enter(null);
+        Debug.Log($"[StateMachine] Initialized with state: {startingState.GetType().Name}");
+        CurrentState?.Enter(context);
         OnStateChanged?.Invoke(CurrentState);
     }
 
     public void ChangeState(IEnemyState newState)
     {
-        CurrentState?.Exit(null);
+        if (newState == CurrentState) return;
+
+        Debug.Log($"[StateMachine] Transitioning from <{CurrentState?.GetType().Name}> to <{newState.GetType().Name}>");
+
+        CurrentState?.Exit(context);
         CurrentState = newState;
-        CurrentState?.Enter(null);
+        CurrentState?.Enter(context);
         OnStateChanged?.Invoke(CurrentState);
     }
 }
