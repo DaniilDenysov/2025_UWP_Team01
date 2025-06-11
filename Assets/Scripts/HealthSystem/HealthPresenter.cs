@@ -68,40 +68,22 @@ namespace TowerDeffence.HealthSystem
 
     public class HealthPresenter : Presenter<HealthSystemView, HealthModel, Health>, IDamagable
     {
-        [SerializeField] BackgroundMusicChanger changer;
-
         private void Start()
         {
             model.UpdateModel();
-            model.OnHealthThreshold += HandleHpThreshold;
         }
 
-        private void OnDestroy()
-        {
-            if (model != null)
-            {
-                model.OnHealthThreshold -= HandleHpThreshold;
-            }
-        }
-
-        private void HandleHpThreshold(int index)
-        {
-            if (!changer) return;
-            changer.ChangeBackgroundMusic(index);
-        }
-
-
-        public void ResetHealth()
+        public virtual void ResetHealth()
         {
             model.ResetHealth();
         }
 
-        public bool DoDamage(uint damage)
+        public virtual bool DoDamage(uint damage)
         {
            return model.DoDamage(damage);
         }
 
-        public uint GetCurrentHealthPoints()
+        public virtual uint GetCurrentHealthPoints()
         {
             return model.GetCurrentHealthPoints();
         }

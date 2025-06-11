@@ -7548,8 +7548,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2083183543}
   - component: {fileID: 2083183546}
-  - component: {fileID: 2083183545}
   - component: {fileID: 2083183544}
+  - component: {fileID: 2083183548}
   - component: {fileID: 2083183547}
   m_Layer: 0
   m_Name: Walls
@@ -7630,27 +7630,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 33, y: 32.99999, z: 11.2}
   m_Center: {x: 0, y: 1.4210855e-14, z: 2.9999995}
---- !u!114 &2083183545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083183542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d042740b02b2a584588cda842c16d529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model:
-    health:
-      Current: 100
-      Max: 100
-    thresholds:
-    - 0.51
-    - 0.15
-  view: {fileID: 2036292588}
-  changer: {fileID: 2083183547}
 --- !u!114 &2083183546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7685,6 +7664,27 @@ MonoBehaviour:
   backgroundMusic:
   - {fileID: 11400000, guid: 7ebd0d0ab1cae1342b7d46d87cb30295, type: 2}
   - {fileID: 11400000, guid: dd688f46f77bf954694c0cc4b08774c3, type: 2}
+--- !u!114 &2083183548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083183542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e176c96f8c23f874fb2df82b7f5c4dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model:
+    health:
+      Current: 100
+      Max: 100
+    thresholds:
+    - 0.51
+    - 0.16
+  view: {fileID: 2036292588}
+  changer: {fileID: 2083183547}
 --- !u!1 &2111960162
 GameObject:
   m_ObjectHideFlags: 0
@@ -8868,7 +8868,7 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[7430407915340562434].townHall
       value: 
-      objectReference: {fileID: 2083183545}
+      objectReference: {fileID: 2083183548}
     - target: {fileID: 6133907950601886160, guid: 6fa069f8ee5ccd3408f36e5691be81a5,
         type: 3}
       propertyPath: managedReferences[4300612358944325643].canvasGroup
