@@ -13,6 +13,7 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
     [SerializeField] private int price;
     [SerializeField] public UnityEvent OnTowerPlaced;
     [SerializeField] public bool IsTarget;
+    [SerializeField] protected GameObject destructionEffectPrefab;
 
     public static List<Building> AvailableBuidings = new List<Building>();
     private Renderer[] renderers;
@@ -92,6 +93,8 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
 
     public virtual void Remove()
     {
+        PlayDestructionEffect();
+
         Withdraw();
         objectPool.ReleaseObject(this);
     }
@@ -143,7 +146,18 @@ public class Building : MonoBehaviour, IPrototype<Building>, IPlacable
             }
         }
     }
-    
+
+    private void PlayDestructionEffect()
+    {
+        if (destructionEffectPrefab == null)
+        {
+            Debug.LogWarning("No destruction effect prefab assigned!");
+            return;
+        }
+
+        GameObject effect = Instantiate(destructionEffectPrefab, transform.position, transform.rotation);
+    }
+
     private void SetMaterialTransparent(Material mat)
     {
         mat.SetFloat("_Mode", 3);

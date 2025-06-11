@@ -30,6 +30,16 @@ PrefabInstance:
       propertyPath: _onInteracted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -6023971894581289496, guid: ad5cf645e680d45bf89df59416b0d51a,
+        type: 3}
+      propertyPath: OnTowerPlaced.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -6023971894581289496, guid: ad5cf645e680d45bf89df59416b0d51a,
+        type: 3}
+      propertyPath: _onInteracted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 69034560117353609, guid: ad5cf645e680d45bf89df59416b0d51a,
         type: 3}
       propertyPath: m_AnchorMax.y
