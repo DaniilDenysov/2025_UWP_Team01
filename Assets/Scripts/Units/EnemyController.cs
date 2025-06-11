@@ -44,39 +44,13 @@ public class EnemyController : MonoBehaviour, IDamagable
     {
         if (IsDead()) return;
 
-        DetermineState();
+        currentTarget = attackController.GetClosestTarget();
 
         StateMachine.CurrentState?.Execute(Context);
     }
 
-    private void DetermineState()
-    {
-        if (currentTarget == null)
-            currentTarget = attackController.GetClosestTarget();
-
-            if (StateMachine.CurrentState != movementComponent)
-            {
-                StateMachine.ChangeState(movementComponent);
-                return;
-            }
-            
-
-        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.transform.position);
-
-        if (distanceToTarget <= AttackData.Range)
-        {
-            if (StateMachine.CurrentState != attackController)
-            {
-                Context.StateMachine.ChangeState(Context.AttackState);
-            }
-        }
-        else
-        {
-            if (StateMachine.CurrentState != movementComponent)
-            {
-                Context.StateMachine.ChangeState(Context.MovementState);
-            }
-        }
+    public void RequestStateChange(IEnemyState requestedState)
+    {StateMachine.ChangeState(requestedState);
     }
 
     public void Warp(Vector3 position)

@@ -21,9 +21,21 @@ namespace TowerDeffence.AI
 
         public virtual void Execute(StateMachineContext context)
         {
-            if (context.Owner.currentTarget == null) return;
+            var target = context.Owner.currentTarget;
+            if (target == null)
+            {
+                context.Owner.RequestStateChange(context.MovementState);
+                return;
+            }
 
-            transform.LookAt(context.Owner.currentTarget.transform);
+            transform.LookAt(target.transform);
+
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+            if (distance > attackSO.Range)
+            {
+                context.Owner.RequestStateChange(context.MovementState);
+                return;
+            }
 
             if (Time.time > lastAttackTime + (1f / attackSO.Rate))
             {

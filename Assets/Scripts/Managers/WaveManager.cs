@@ -64,7 +64,7 @@ namespace TowerDeffence.AI
         [SerializeField] private bool randomizeDelay;
         [SerializeField, Range(0, 100)] private float spawnDelay;
         [SerializeField] private List<Wave> waves = new List<Wave>();
-        private IObjectPool<EnemyMovement> unitObjectPool;
+         private IObjectPool<EnemyMovement> unitObjectPool;
 
         [Inject]
         protected void Construct(IObjectPool<EnemyMovement> unitObjectPool)
@@ -120,7 +120,7 @@ namespace TowerDeffence.AI
                     //TODO: [DD] refacctor to pool
                     EnemyMovement instance = unitObjectPool.GetObject(waveEnemy.EnemyData.Prefab);
                     instance.StopAgent();
-                    instance.GetComponent<EnemyController>().Warp(spawnPoint.position);
+                    instance.Warp(spawnPoint.position);
                     instance.transform.rotation = Quaternion.identity;
                     instance.StartAgent();
                     instance.MoveTo(target.position);

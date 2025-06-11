@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TowerDeffence.Utilities;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,37 +11,17 @@ namespace TowerDeffence.AI
     {
         private static HashSet<EnemyMovement> avaialableEnemies = new HashSet<EnemyMovement>();
         public static IReadOnlyCollection<EnemyMovement> AvailableEnemies => avaialableEnemies;
+
         private NavMeshAgent agent;
         private Animator animator;
 
-        public void Initialize()
-        { 
-            agent = GetComponent<NavMeshAgent>(); animator = GetComponent<Animator>();
-        }
-        private void OnEnable() 
-        { 
-            avaialableEnemies.Add(this); 
-        }
-        private void OnDisable() 
-        { 
-            avaialableEnemies.Remove(this); 
-        }
-        public void StopAgent() 
-        { 
-            if (agent != null && agent.isActiveAndEnabled) agent.isStopped = true; 
-        }
-        public void StartAgent() 
-        { 
-            if (agent != null && agent.isActiveAndEnabled) agent.isStopped = false; 
-        }
-        public void MoveTo(Vector3 position) 
-        { 
-            if (agent != null && agent.isActiveAndEnabled) agent.SetDestination(position); 
-        }
-        public void Warp(Vector3 position) 
-        { 
-            if (agent != null && agent.isActiveAndEnabled) agent.Warp(position);
-        }
+        public void Initialize() { agent = GetComponent<NavMeshAgent>(); animator = GetComponent<Animator>(); }
+        private void OnEnable() { avaialableEnemies.Add(this); }
+        private void OnDisable() { avaialableEnemies.Remove(this); }
+        public void StopAgent() { if (agent != null && agent.isActiveAndEnabled) agent.isStopped = true; }
+        public void StartAgent() { if (agent != null && agent.isActiveAndEnabled) agent.isStopped = false; }
+        public void MoveTo(Vector3 position) { if (agent != null && agent.isActiveAndEnabled) agent.SetDestination(position); }
+        public void Warp(Vector3 position) { if (agent != null && agent.isActiveAndEnabled) agent.Warp(position); }
 
         public void Enter(StateMachineContext context)
         {
@@ -55,29 +35,24 @@ namespace TowerDeffence.AI
 
             if (target != null)
             {
+                MoveTo(target.transform.position);
                 float distance = Vector3.Distance(transform.position, target.transform.position);
-
-                if (distance > context.Owner.AttackData.Range)
+                if (distance <= context.Owner.AttackData.Range)
                 {
-                    MoveTo(target.transform.position);
-                    if (animator != null) animator.SetBool("IsMoving", true);
-                }
-                else
-                {
-                    StopAgent();
-                    if (animator != null) animator.SetBool("IsMoving", false);
+                    context.Owner.RequestStateChange(context.AttackState);
                 }
             }
             else
             {
+                DebugUtility.PrintLine("Stopped agent!");
                 StopAgent();
-                if (animator != null) animator.SetBool("IsMoving", false);
             }
         }
 
         public void Exit(StateMachineContext context)
         {
             StopAgent();
+            DebugUtility.PrintLine("Stopped agent!");
             if (animator != null) animator.SetBool("IsMoving", false);
         }
     }
