@@ -37,6 +37,8 @@ namespace TowerDeffence.Buildings
         {
             strategySelector = new ClosestEnemy() { myPosition = transform };
             rate = _towerSO.FireRate;
+            range = _towerSO.Range;
+            damage = _towerSO.Damage;
         }
 
         private void Update()
@@ -55,11 +57,6 @@ namespace TowerDeffence.Buildings
             }
         }
 
-        public override bool Place()
-        {
-            return base.Place();
-        }
-
         public void SetStrategySelector(IAttackStrategyHandler<EnemyMovement> strategySelector)
         {
             this.strategySelector = strategySelector;
@@ -72,7 +69,10 @@ namespace TowerDeffence.Buildings
 
             if (nearestEnemy != null)
             {
-                target = nearestEnemy.transform;
+                if (Vector3.Distance(gameObject.transform.position, nearestEnemy.transform.position) < range)
+                {
+                    target = nearestEnemy.transform;
+                }
             }
             else
             {
@@ -86,6 +86,7 @@ namespace TowerDeffence.Buildings
             projGO.transform.position = firePoint.position;
             projGO.transform.rotation = firePoint.rotation;
             projGO.onKilled += _economyManager.OnKill;
+            projGO.Damage = (uint)damage;
 
             SFXManager.Instance.PlayOneShot(shootSFX, transform.position);
             if (projGO != null)

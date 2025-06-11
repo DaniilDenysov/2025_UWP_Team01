@@ -1,5 +1,6 @@
 using System;
 using TowerDeffence.AI;
+using TowerDeffence.HealthSystem;
 using TowerDeffence.ObjectPools;
 using TowerDeffence.Utilities;
 using UnityEngine;
@@ -18,6 +19,13 @@ namespace TowerDeffence.Buildings
         protected IObjectPool<EnemyMovement> enemyObjectPool;
         protected IObjectPool<Projectile> projectileObjectPool;
         private Quaternion originalRotation;
+        private uint damage;
+
+        public uint Damage
+        {
+            get => damage;
+            set => damage = value;
+        }
 
 
         private void Start()
@@ -67,11 +75,14 @@ namespace TowerDeffence.Buildings
 
         protected virtual void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.TryGetComponent(out EnemyMovement enemyMovement))
+            if (other.gameObject.TryGetComponent(out HealthPresenter health))
             {
-                enemyObjectPool.ReleaseObject(enemyMovement); 
-                onKilled.Invoke();
+                if (health.DoDamage(damage))
+                {
+                    onKilled.Invoke();
+                }
             }
+            
             projectileObjectPool.ReleaseObject(this);
         }
     }
