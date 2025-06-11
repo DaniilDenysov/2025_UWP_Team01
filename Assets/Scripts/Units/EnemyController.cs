@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         healthPresenter = GetComponent<HealthPresenter>();
         movementComponent = GetComponent<EnemyMovement>();
         attackController = GetComponent<AttackController>();
