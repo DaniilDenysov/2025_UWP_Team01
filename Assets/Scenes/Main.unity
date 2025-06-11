@@ -8350,6 +8350,27 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5656362216566089722, guid: 73dfcbc9b5dca9642b8ea16168710921,
+        type: 3}
+      propertyPath: poolObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656362216566089722, guid: 73dfcbc9b5dca9642b8ea16168710921,
+        type: 3}
+      propertyPath: poolObjects.Array.data[1].Prefab
+      value: 
+      objectReference: {fileID: -6270338382972021727, guid: d7b676422268642d783f2caef96ec907,
+        type: 3}
+    - target: {fileID: 5656362216566089722, guid: 73dfcbc9b5dca9642b8ea16168710921,
+        type: 3}
+      propertyPath: poolObjects.Array.data[1].MaxCapacity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656362216566089722, guid: 73dfcbc9b5dca9642b8ea16168710921,
+        type: 3}
+      propertyPath: poolObjects.Array.data[1].DefaultCapacity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7549888819256149570, guid: 73dfcbc9b5dca9642b8ea16168710921,
         type: 3}
       propertyPath: m_LocalPosition.x
