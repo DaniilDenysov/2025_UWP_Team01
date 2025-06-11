@@ -1,6 +1,7 @@
 using System;
 using TowerDeffence.AI;
 using TowerDeffence.HealthSystem;
+using TowerDeffence.Interfaces;
 using TowerDeffence.ObjectPools;
 using TowerDeffence.Utilities;
 using UnityEngine;
@@ -75,7 +76,7 @@ namespace TowerDeffence.Buildings
 
         protected virtual void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.TryGetComponent(out HealthPresenter health))
+            if (other.gameObject.TryGetComponent(out IDamagable health))
             {
                 if (health.DoDamage(damage))
                 {
