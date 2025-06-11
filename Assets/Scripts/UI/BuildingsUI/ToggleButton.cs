@@ -18,8 +18,6 @@ public class ToggleButton : MonoBehaviour
             target.SetActive(false);
         else
         {
-            
-            towerPopUpMenus.ForEach(p => p.SetActive(false)); 
             target.SetActive(true);
         }
     }
