@@ -71,12 +71,12 @@ PrefabInstance:
     - target: {fileID: 4278592027487349634, guid: a0ac6edbea205664aaa33d15eb29f9f7,
         type: 3}
       propertyPath: model.health.Max
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4278592027487349634, guid: a0ac6edbea205664aaa33d15eb29f9f7,
         type: 3}
       propertyPath: model.health.Current
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7314926135517977968, guid: a0ac6edbea205664aaa33d15eb29f9f7,
         type: 3}
