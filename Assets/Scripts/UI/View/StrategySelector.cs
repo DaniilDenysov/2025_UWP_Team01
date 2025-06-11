@@ -9,17 +9,16 @@ namespace TowerDeffence.UI
     {
         [SerializeReference, SubclassSelector] private AttackStrategy attackStrategy;
 
-        public AttackStrategy AttackStrategy
-        {
-            get => attackStrategy;
-        }
+        public AttackStrategy AttackStrategy => attackStrategy;
+
 
         [SerializeField] private Tower tower;
 
-        public void OnSelected()
+        public void OnSelected(AttackStrategy sellectedAttackStrategy)
         {
-            if (attackStrategy is IAttackStrategyHandler<EnemyMovement> typed)
+            if (sellectedAttackStrategy is IAttackStrategyHandler<EnemyMovement> typed)
             {
+                attackStrategy = sellectedAttackStrategy;
                 tower.SetStrategySelector(typed);
             }
         }
